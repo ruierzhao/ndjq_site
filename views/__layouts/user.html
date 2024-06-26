@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset = "UTF-8">
+	<meta http-equiv ="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    
+    <meta name="description" content="明日愁等明日来">
+    <meta name="keywords" content="个人网站，有趣web应用，网站制作，天气查询">
+    <meta name="theme-color" content="#279de4">
+    <meta name="author" content="ruier"/>
+
+    <link rel="icon" type="image/png" sizes="32x32" href="/public/img/zhao.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/public/img/zhao.png">
+
+    <title>wenb - {{ block "title" }}{{ /block }}</title>
+
+    <link rel="stylesheet" href="/node_modules/bootstrap/dist/css/bootstrap.min.css">
+    {{ block "style" }}
+    <style>
+        .icon-police{
+            width: 15px;
+            height: 16px;
+            background: url("/public/img/police.png");
+        }
+    </style>
+    {{ /block }}
+</head>
+<body>
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
+                aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">首页</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="/i">个人资料</a></li>
+                <li><a href="JavaScript:;">设置</a></li>
+                <li><a href="JavaScript:;">Profile</a></li>
+                <li><a href="JavaScript:;">帮助</a></li>
+            </ul>
+            <form class="navbar-form navbar-right">
+                <input type="text" class="form-control" placeholder="Search...">
+            </form>
+        </div>
+    </div>
+</nav>
+    {{ block "container" }}{{ /block }}
+    <footer style="background-color: rgb(212, 225, 238);padding:30px 8px 15px;margin-top:15px;z-index: 100;">
+		<p>免责声明:本站部分资源收录自互联网,如有侵犯您权力的资源,请联系本站及时撤销其内容。邮箱:2656537241@qq.com</p>
+		<p>&nbsp;&nbsp; <a href="www.wenb.xyz">wenb</a>&nbsp;&nbsp;Copyright © 2020 &nbsp;&nbsp;|&nbsp;&nbsp;<i class="icon-police" data-v-bc02e496=""></i>滇ICP备<a href="http://www.beian.miit.gov.cn/">20003980</a>号</p>
+    </footer>
+</body>
+    <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <!-- <script src="/node_modules/bootstrap/dist/js/bootstrap.min.js"></script> -->
+{{ block "script" }}{{ /block }}
+</html>

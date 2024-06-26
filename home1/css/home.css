@@ -1,0 +1,466 @@
+body{
+	background-color: #f3f3f3;
+	overflow-x: hidden;
+	position: relative;
+}
+@font-face {
+  font-family: TIME;
+  src: url(../font/DS-DIGIT.TTF);
+}
+
+.hide{
+	display:none;
+}
+
+.navbar-toggle{
+	border-color: #ddd;
+}
+.navbar{
+	margin: 0;
+}
+.navbar-toggle .icon-bar {
+    display: block;
+    background: #888;
+    width: 22px;
+    height: 2px;
+    border-radius: 1px;
+}
+.container{
+	position: relative;
+}
+.headsnav{
+	background: linear-gradient(135deg,#EF57EA 50%,#3990A0 100%);
+	height: 30px;
+	line-height: 2;
+}
+.heads{
+	height: 85px;
+}
+.heads_left:before{
+	position: absolute;
+	content: "";
+	top: 0;
+	left: 0;
+	width: 20px;
+    height: 10px;
+    border-left: 2px solid #FB0202;
+    border-top: 2px solid #FB0202;
+}
+.heads_left:after{
+	position: absolute;
+	content: "";
+	bottom: 0;
+	right: 0;
+	width: 20px;
+    height: 10px;
+    border-bottom: 2px solid #FB0202;
+    border-right: 2px solid #FB0202;
+}
+.heads_left{
+	border:rgba(25,186,139,0.17);
+}
+#heads_right{
+	position: absolute;
+	top: 0;
+	right: 0;
+	width: 70%;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+}
+#heads_right span{
+	float: right;
+}
+
+.input-group-addon{
+	cursor: pointer;
+}
+#top_nav_list > ul > li > a{
+	border-radius:50%;
+	width: 90px;
+	text-align: center;
+}
+.nav_tab{
+	background: linear-gradient(135deg,#EF57EA 50%,#3990A0 100%);
+	width: 100%;
+	height: 280px;
+}
+
+.brandimg{
+	width: 50px;
+	height: 50px;
+	text-align: center;
+}
+#dlu .modal-body table tr td{
+	padding-bottom: 15px;
+}
+.log-left,.log-right{
+	display: none;
+}
+/*ruier*/
+.ruier{
+	width:100%;
+}
+.ruier .ruier-box{
+	width:270px;
+	height:72px;
+	margin:4em auto 4em;
+	-webkit-perspective:200px;
+	perspective:200px
+	}
+.ruier .ruier-box div{
+	position:relative;
+	width:30px;
+	height:30px;
+	float:left;
+	text-align:center;
+	line-height:30px;
+	font-family:微软雅黑;
+	font-size:20px;
+	color:#FFF;
+	background:rgba(67,196,121,.5);
+	margin-right:25px;
+	box-shadow:0 25px 40px rgba(0,0,0,.4);
+	transform:scale(1.5) translateY(-15px) translateZ(0) rotateX(25deg);
+	-webkit-transform:scale(1.5) translateY(-15px) translateZ(0) rotateX(25deg)
+}
+.ruier .ruier-box>div:nth-child(1){
+	background:rgba(0,0,0,.1);
+	margin-right:20px;
+	-webkit-animation:movement .9s ease 0s infinite alternate;
+	animation:movement .9s ease 0s infinite alternate
+}
+.ruier .ruier-box>div:nth-child(2){
+	background:rgba(0,0,0,.1);
+	margin-right:20px;
+	-webkit-animation:movement .9s ease 75ms infinite alternate;
+	animation:movement .9s ease 100ms infinite alternate
+}
+.ruier .ruier-box>div:nth-child(3){
+	background:rgba(0,0,0,.1);
+	margin-right:20px;
+	-webkit-animation:movement .9s ease 150ms infinite alternate;
+	animation:movement .9s ease 200ms infinite alternate
+}
+.ruier .ruier-box>div:nth-child(4){
+	background:rgba(0,0,0,.1);
+	margin-right:20px;
+	-webkit-animation:movement .9s ease 225ms infinite alternate;
+	animation:movement .9s ease 300ms infinite alternate
+}
+.ruier .ruier-box>div:nth-child(5){
+	background:rgba(0,0,0,.2);
+	margin-right:20px;
+	-webkit-animation:movement .9s ease .3s infinite alternate;
+	animation:movement .9s ease 400ms infinite alternate
+}
+@keyframes movement{
+	from{
+		transform:scale(1) translateY(0) translateZ(0) rotateX(0);
+		box-shadow:0 0 0 transparent
+	}
+	to{
+		transform:scale(1.8) translateY(-20px) translateZ(0) rotateX(25deg);
+		box-shadow:0 25px 40px rgba(0,0,0,.4);
+		background:rgba(39,157,228,.8)
+	}
+}
+
+.nav-tabs li a{
+	outline-style: none;
+	border-style: none;
+}
+
+/*内容区 瀑布流*/
+.white{
+	background: #fff;
+	box-sizing: border-box;
+	/*display: flex;*/
+}
+.white .content{
+	width: 100%;
+	height: 10em;
+	margin: 20px 0;
+	border: 1px solid #ccc;
+	overflow: hidden;
+}
+.left-thumb{
+	height: 10em;
+	width: 30%;
+	float: left;
+	background: pink;
+	display: flex;
+	justify-content: center;
+}
+.left-thumb path{
+	fill: #31e8ff;
+	stroke-width: 8;
+	stroke: #EF52CE;
+	stroke-dasharray: 1580;
+	stroke-dashoffset: 0;
+}
+.content a:hover path{
+	fill: transparent;
+	animation: dropdown 1.5s linear forwards;
+}
+@keyframes dropdown{
+	0%{
+		stroke-dashoffset: 0;
+	}
+	40%{
+		stroke-dashoffset: 1580;
+	}
+	80%{
+		stroke-dashoffset: 3160;
+		fill: transparent;
+	}
+	100%{
+		stroke-dashoffset: 3160;
+		fill: #f00;
+	}
+}
+
+.right-scrip{
+	height: 10em;
+	width: 70%;
+	float: right;
+	background: #A6F5C9;
+}
+
+.bottom-scrip{
+	height: 2em;
+	width: 100%;
+	float: left;
+}
+
+.scrip-title{
+	text-align: center;
+	font-size: 20px;
+}
+.right-scrip .scrip-title{
+	line-height: 7em;
+}
+.bottom-scrip .scrip-title{
+	line-height: 4em;
+}
+
+.content-panel{
+	display: none;
+}
+
+/*时间模块*/
+footer{
+	padding-top: 20px;
+	background: pink;
+}
+.time{
+	display: grid;
+	box-sizing: border-box;
+	grid-template-columns: 30% 5% 30% 5% 30%;
+	grid-template-rows: 60px auto 40px;
+	text-align: center;
+	margin-top: 30px;
+}
+.time span{
+	justify-content: center;
+	grid-column:  1/6;
+	font-size: 30px;
+}
+.time-item{
+	justify-content: center;
+	font-family: TIME;
+	font-size: 80px;
+}
+.hours{
+	background: rgb(0,255,0,50);
+}
+.minutes{
+	background: rgb(255,0,0,50);
+}
+.seconds{
+	background: #ff0;
+}
+
+.timefoot:nth-child(7){
+	background: linear-gradient(180deg, rgb(0,255,0,50), transparent);
+	border-top: 1px solid #777;
+}
+.timefoot:nth-child(9){
+	background: linear-gradient(180deg, rgb(255,0,0,90), transparent);
+	border-top: 1px solid #777;
+}
+.timefoot:nth-child(11){
+	background: linear-gradient(180deg, rgb(255,255,0,90), transparent);
+	border-top: 1px solid #777;
+}
+.timefoot span{
+	font-size: 21px;
+	line-height: 30px;
+}
+
+/*坐标转换*/
+.gcoord{
+	min-height: 230px;
+	background: #fff;
+	padding-top: 30px;
+	text-align: center;
+	overflow-y: scroll;
+	position: relative;
+}
+.gcoord span{
+	font-size: 21px;
+}
+.gcoord input{
+	width: 230px;
+	height: 35px;
+	font-size: 16px;
+	padding: 0 5px;
+}
+.gcoord select{
+	width: 100px;
+	height: 35px;
+	font-size: 16px;
+	border-radius: 5px;
+}
+.gcoord button{
+	width: 200px;
+	height: 40px;
+	color: #fff;
+	background: #50B5BA;
+	font-size: 22px;
+	border-radius: 8px;
+	border-style: none;
+}
+
+.gcoord .c-prest,.gcoord .c-dest{
+	margin-bottom: 20px;
+}
+.more{
+	position: absolute;
+	bottom: 15px;
+	right: 30px;
+}
+
+.typewaltz{
+	width: 100%;
+	height: auto;
+	background: #333;
+	box-sizing: border-box;
+}
+#typewaltz{
+	width: 95%;
+	height: 150px;
+	margin: 15px 15px 5px 15px;
+	background: #4B4D4F;
+	font-size: 20px;
+	resize: none;
+	color: #fff;
+	border: 1px solid #f99;
+	padding: 3px 8px;
+}
+.typewaltz button{
+	width: 80px;
+	height: 30px;
+	background: #62F288;
+	color: #000;
+}
+.artical{
+	min-height: 400px;
+	font-size: 20px;
+	font-weight: 500;
+	overflow-y: scroll;
+}
+.header{
+	margin: 0 auto;
+}
+.xinyu{
+	margin-top: 15px;
+	margin-bottom: 20px;
+}
+.xinyu input{
+	height: 45px;
+	border-radius: 8px;
+}
+.xinyu .liuinpt{
+	margin: 0 15px;
+}
+#comments{
+	margin-top: 20px;
+}
+#comments .panel-heading{
+	height: 18px;
+	line-height: 0;
+	font-size: 14px;
+}
+.luonjpg{
+	background: url(../img/luonan.jpg) no-repeat;
+	-webkit-background-size: 100% 520px;
+	background-size: 100% 520px;
+	background-attachment: scroll;
+}
+.weather{
+	width: 650px;
+	height: 350px;
+	display: flex;
+	background: url(../img/t_bg3.jpg) no-repeat;
+	-webkit-background-size: 100% 100%;
+	background-size: 100% 100%;
+}
+.info{
+	flex: 2;
+	text-align: center;
+}
+#weather_line{
+	flex: 7;
+	width: 500px;
+	height: 345px;
+}
+#accordion{
+	text-align: center;
+}
+
+.zancun{
+	height: 300px;
+	border: 1px solid #c4bdbd;
+	box-shadow: 3px 3px 2px rgba(102, 102, 102,0.4);
+}
+.tiqu{
+	top: 30px;
+}
+.tiqu input,
+.tiqu button {
+	height: 50px;
+	border-radius:10px;
+}
+.fileInput{
+	top: 50px;
+	position: relative;
+}
+.fileInput #up_load{
+	position: absolute;
+	display: inline-block;
+	width: 100%;
+	height: 50px;
+	color: rgb(37, 36, 36);
+	border: 1px solid rgb(112, 165, 245);
+	text-align: center;
+	line-height: 50px;
+	font-style: normal;
+	cursor: pointer;
+	margin: 0;
+	font-size: 20px;
+	background: #fff;
+	
+}
+.fileInput #fileInput{
+	height: 50px;
+	width: 200px;
+}
+#shchuan{
+	width: 100%;
+	font-size: 15px;
+	padding: 10px 30px;
+}
+.shchuan{
+	top:60px;
+}

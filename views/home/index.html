@@ -1,0 +1,322 @@
+{{ extend "../__layouts/layout.html" }}
+{{ block "style" }}
+
+<link href="http://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"> 
+
+<link rel="stylesheet" href="/public/css/home.css">
+<script src="/node_modules/jquery/dist/jquery.min.js"></script>
+{{ /block }}
+{{ block "container" }}
+<div class="heads">
+	<div class="headsnav">
+		<div class="container">
+			<div class="heads_left col-md-12">
+				<span>你好，欢迎访问</span>
+				<a id="login" href="javascript:;" data-toggle="modal" data-target="#dlu"><span>登录</span></a>
+				<a id="register" href="javascript:;" data-toggle="modal" data-target="#dlu">免费注册</a>
+				<div id="heads_right">
+					<span id="span"><img class="headsimg" src="/public/img/xin.png" width="20px">{{ top_soup }}</span>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	
+	<div class="nav_tab">
+		<div class="container">
+			<nav class="navbar">
+				<div class="container-fluid">
+					<div class="navbar-header">
+						<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#top_nav_list">
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+						</button>
+						<a class="navbar-brand" href="#"><img src="/public/img/xin.png" height="30px" class="brand"></a>
+					</div>
+					<div class="collapse navbar-collapse" id="top_nav_list">
+						<ul class="nav navbar-nav">
+							<li id="lizhi"><a href="javascript:;">呐，荔枝</a></li>
+							<li id="qun">
+								<a href="javascript:;">联系我</a>
+								<div class="qunimg">
+									<img src="/public/img/qun.jpg" width="100%"height="100%">
+								</div>
+							</li>
+						</ul>
+						<ul class="nav navbar-nav navbar-right">
+							<li id="search_list">
+								<form class="navbar-form" role="search">
+									<div class="input-group">
+										<input id="nav_search" type="text" class="form-control" placeholder="Search">
+										<span class="input-group-addon" id="modalSearch"><span
+												class="glyphicon glyphicon-search" aria-hidden="true"></span></sapn>
+									</div>
+								</form>
+							</li>
+							
+							<li><a href="#scrollLiuyan">留言</a></li>
+							<li><a href="javascript:;">关于</a></li>
+							{{ if user }}
+							<li class="dropdown">
+								<a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" role="button">{{ user.nickname }}<span
+										class="caret"></span></a>
+								<ul class="dropdown-menu" style="background: rgb(159, 217, 235);">
+									<li>
+										<a href="javascript:;">
+											<h4>当前用户：{{ user.nickname }}</h4>
+										</a>
+									</li>
+									<li role="separator" class="divider"></li>
+									<li>
+										<a href="/i" target="_blank">
+											<h4>个人中心</h4>
+										</a>
+									</li>
+									<li role="separator" class="divider"></li>
+									<li>
+										<a href="/logout">
+											<h4>退出登录</h4>
+										</a>
+									</li>
+								</ul>
+							</li>
+							{{ else }}
+							<li id="nodenglu"><a href="javascript:;">未登录</a></li>
+							{{ /if }}
+						</ul>
+					</div>
+				</div>
+			</nav>
+		</div>
+	</div>
+	{{ include "../__partials/modal.html" }}
+</div>
+
+<div class="ruier">
+	<div class="ruier-box">
+		{{ each throb_char }}
+		<div>{{ $value }}</div>
+		{{ /each }}
+		<i class="hide">
+			<p>此内容借鉴自<a href="http://tool.uixsj.cn/">现实君</a>服务器已停</p>
+		</i>
+	</div>
+	<div class="container">
+		<div class="row">
+			<div class="col-xs-12 col-sm-12 col-md-12">
+				<ul class="nav nav-tabs nav-justified">
+					<li class="top-navbar" class="active"><a href="#">花里胡哨</a></li>
+					<li class="top-navbar"><a href="#">图表</a></li>
+					<li class="top-navbar"><a href="#">游戏</a></li>
+					<li class="top-navbar"><a href="#">文件暂存</a></li>
+				</ul>
+			</div>
+		</div>
+		{{ include "../__partials/banner.html" }}
+		{{ include "../__partials/content.html" }}
+	</div>
+</div>
+
+<!-- 网址推荐 -->
+{{ include "../__partials/siteRecommmend.html" }}
+
+<div class="artical container">
+	<div class="row">
+		<div class="rol-sm-12 rol-md-12 luonjpg">
+			<h1 class="header">《落难的王子》</h1>
+			<div class="arti">
+				<p>
+				　　有一个王子，生性多愁善感，最听不得悲惨的故事。每当左右向他禀告天灾人祸的消息，他就流着泪叹息道：“天哪，太可怕了!这事落到我头上，我可受不了!”
+				</p>
+				<p>
+					　　可是，厄运终于落到了他的头上。在一场突如其来的战争中，他的父王被杀，母后受辱自尽，他自己也被敌人掳去当了奴隶，受尽非人的折磨。当他终于逃出虎口时，他已经身罹残疾，从此以后流落异国他乡，靠行乞度日。
+				</p>
+				<p>
+					　　我是在他行乞时遇到他的，见他相貌不凡，便向他打听身世。听他说罢，我早已泪流满面，发出了他曾经发过的同样的叹息：
+				</p>
+				<p>
+					　　“天哪，太可怕了：这事落到我头上，我可受不了!”
+				</p>
+				<p>
+					　　谁知他正色道——
+				</p>
+				<p>
+					　　“先生，请别说这话。凡是人间的灾难，无论落到谁头上，谁都得受着，而且都受得了，——只要他不死。至于死，就更是一件容易的事了。”
+				</p>
+				<p>
+					　　落难的王子撑着拐杖远去了。有一天，厄运也落到了我的头上，而我的耳边也响起了那熟悉的叹息：
+				</p>
+				<p>
+					　　“天哪，太可怕了……”
+				</p>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-xs-12 col-md-8">
+			<button id="scrollLiuyan" class="btn btn-success"disabled>留点足迹</button>
+		</div>
+		<div class="col-xs-12 col-md-4"style="text-align:right">
+			<button id="articalShift" class="btn btn-danger">换一篇</button>
+			<!-- <div>"由Alone88提供的免费API 服务，官方文档：www.alapi.cn"</div> -->
+		</div>
+	</div>
+</div>
+<div class="xinyu container" id="conments">
+	<div class="row">
+		<div class="rol-sm-offset-12 rol-md-offset-12 liuinpt">
+			<div class="input-group">
+				<input type="text" class="form-control" id="liuyan1" placeholder="留言 最多{{ cmt_size_limit }}个字"
+					aria-describedby="basic-addon2" maxlength={{ cmt_size_limit }}>
+				<span class="input-group-addon xinyu-addon btn" id="fabiao1">发表</span>
+			</div>
+		</div>
+	</div>
+
+	<div id="comments">
+		<!-- <div class="panel panel-default removeComments update">
+			<div class="panel-heading">
+				<p class="panel-title">心语时间:<span class="xtime">2020.5.9-15:25:35</span></p>
+			</div>
+			<div class="panel-body xcontent">
+			</div>
+		</div> -->
+	</div>
+	<nav aria-label="Page navigation">
+		<ul class="pagination">
+			<li>
+				<a href="javascript:;" aria-label="Previous"class="btn pagePrev">
+					<span aria-hidden="true">&laquo;</span>
+				</a>
+			</li>
+			<li><a id="qian" class="btn disabled" href="javascript:;">...</a></li>
+			<li><a class="cur-page" href="javascript:;">1</a></li>
+			<li><a class="cur-page" href="javascript:;">2</a></li>
+			<li><a class="cur-page" href="javascript:;">3</a></li>
+			<li><a class="cur-page" href="javascript:;">4</a></li>
+			<li><a class="cur-page" href="javascript:;">5</a></li>
+			<li><a class="hou btn disabled" href="javascript:;">...</a></li>
+			<li>
+				<a href="javascript:;" aria-label="Next"class="btn pageNext">
+					<span aria-hidden="true">&raquo;</span>
+				</a>
+			</li>
+		</ul>
+	</nav>
+	<div>
+		<p>最多保存{{ cmt_counts_limit }}条数据，超出自动删除</p>
+	</div>
+</div>
+
+<footer>
+	<div class="container">
+		<div class="row">
+			<div class="col-xs-12 col-md-5 time">
+				<span>现在是 <span class="year"></span> 年 <span class="mon"></span> 月 <span class="day"></span> 日 </span>
+				<div class="hours time-item"></div>
+				<div class="time-item">:</div>
+				<div class="minutes time-item"></div>
+				<div class="time-item">:</div>
+				<div class="seconds time-item">15</div>
+				<div class="timefoot"><span>hours</span></div>
+				<div class="time-item"><span></span></div>
+				<div class="timefoot"><span>minutes</span></div>
+				<div class="time-item"><span></span></div>
+				<div class="timefoot"><span>seconds</span></div>
+			</div>
+			<div class="col-xs-12 col-md-7">
+				<div class="weather">
+					<div class="info">
+						<input type="text" placeholder="昆明" id="weatherAddress">
+						<select id="city">
+							<option value="101290101">昆明</option>
+							<option value="101290311">泸西</option>
+							<option value="101291301">香格里拉</option>
+						</select>
+						<button class="btn btn-info btn-xm" id="shuaxin">查询</button>
+						<div>
+							<h1 class="temp"></h1>
+						</div>
+						<div>
+							<p class="humidity"></p>
+						</div>
+						<div>
+							<p class="wdforce"></p>
+						</div>
+						<div>
+							<p class="pm25"></p>
+						</div>
+						<div>
+							<p>更新时间:</p>
+						</div>
+						<div>
+							<p class="updateWeather"></p>
+						</div>
+					</div>
+					<div id="weather_line"></div>
+					<div class="clear"></div>
+				</div>
+			</div>
+			<div class="col-xs-12">
+				<div id="weather_line" style="height:350px"></div>
+				<div class="clear"></div>
+			</div>
+			<div class="col-xs-12 col-md-10">
+				<h3 class="text-justify">本站已经持续运行： <span id="sustain"></span></h3>
+			</div>
+		</div>
+	</div>
+	<div class="footr"style="background:#333;color:#eee;padding:30px 8px 15px;margin-top:15px">
+		<p id="tianqihide">天气查询部分支持云南大多数县市以及全国大多数省会。如若是天气部分加载不出来，可能是某个浏览器插件（比如广告拦截或隐私保护插件）阻止了请求而引起的。</p>
+		<p>免责声明:本站部分资源收录自互联网,如有侵犯您权力的资源,请联系本站及时撤销其内容。邮箱:2656537241@qq.com</p>
+		<p>&nbsp;&nbsp; <a href="www.wenb.xyz">wenb</a>&nbsp;&nbsp;Copyright © 2020 &nbsp;&nbsp;|&nbsp;&nbsp;<i class="icon-police" data-v-bc02e496=""></i>滇ICP备<a href="http://www.beian.miit.gov.cn/">20003980</a>号</p>
+	</div>
+</footer>
+<script>
+	//设置设备和浏览器宽高自适应
+		!(function () {
+			var $headr = $('#heads_right');
+			window.onload = function () {
+				var width = window.screen.width;;
+				if (width < 600) {
+					$headr.hide();
+					$("#tianqihide").hide()
+					$('#weather_line').eq(0).remove()
+					// $('#weather_line').css({"height": 350+'px'})
+				}else{
+					$('#weather_line').eq(1).remove()
+				}
+				setTimeout(function () {
+					$('#birthday').modal('show');
+				}, 4000)
+			}
+			window.onresize = function () {
+				var width = window.innerWidth;;
+				if (width < 600) {
+					$headr.hide();
+					$("#tianqihide").hide()
+				} else {
+					$headr.show();
+					$("#tianqihide").show()
+				}
+			}
+		})();
+</script>
+{{ /block }}
+{{ block "script" }}
+<script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="/node_modules/gcoord/dist/gcoord.js"></script>
+<script src="/public/js/echarts.min.js"></script>
+<script src="/public/js/home.js"></script>
+<script src="/public/js/typewaltz.js"></script>
+<script>
+	//复制文本
+	function cpy(target) {
+		target.select();
+		document.execCommand("Copy");
+	}
+	POWERMODE.colorful = true;
+	document.body.addEventListener('input', POWERMODE);	
+</script>
+{{ /block }}

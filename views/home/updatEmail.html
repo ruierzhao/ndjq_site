@@ -1,0 +1,401 @@
+{{ extend "../__layouts/user.html" }}
+{{ block "title" }}updateEmail{{ /block }}
+{{ block "style" }}
+<style>
+    .sub-header {
+        padding-bottom: 10px;
+        border-bottom: 1px solid #eee;
+    }
+
+    .navbar-fixed-top {
+        border: 0;
+    }
+
+    .sidebar {
+        display: none;
+    }
+
+    @media (min-width: 768px) {
+        .sidebar {
+            top: 51px;
+            bottom: 0;
+            left: 0;
+            display: block;
+            overflow-x: hidden;
+            overflow-y: auto;
+            background-color: #f5f5f5;
+            border-right: 1px solid #eee;
+        }
+
+        .main {
+            padding-right: 40px;
+            padding-left: 40px;
+        }
+    }
+
+    @media (min-width: 998px) {
+        .mbom h3 {
+            text-align: right;
+            margin-top: 0;
+        }
+    }
+
+    .nav-sidebar {
+        margin-right: -21px;
+        margin-bottom: 20px;
+        margin-left: -20px;
+    }
+
+    .nav-sidebar>li>a {
+        padding-right: 20px;
+        padding-left: 20px;
+    }
+
+    .nav-sidebar>.active>a,
+    .nav-sidebar>.active>a:hover,
+    .nav-sidebar>.active>a:focus {
+        color: #fff;
+        background-color: #428bca;
+    }
+
+    .main {
+        padding: 20px;
+        margin-top: 50px;
+    }
+
+    .main .page-header {
+        margin-top: 0;
+    }
+
+    .mbom {
+        margin-bottom: 15px;
+    }
+
+    .mbom .input-group-addon {
+        cursor: pointer;
+    }
+
+    .mbom button {
+        font-size: 20px;
+        padding: 4px 100px;
+        font-weight: 500;
+    }
+    footer{
+        position: fixed;
+        width: 100%;
+        bottom: 0;
+        left: 0;
+
+    }
+    .alert1{
+        padding-top: 0;
+        padding-bottom: 0;
+        margin-top: 0;
+        margin-bottom: 0;
+    }
+    form .row{
+        margin-bottom: 5em;
+    }
+</style>
+{{ /block }}
+{{ block "container" }}
+<div class="container">
+    <div class="row">
+        <div class="col-sm-2 col-md-3 sidebar">
+            <ul class="nav nav-sidebar">
+                <li><a href="/i" style="font-size: 22px;">个人中心</a></li>
+                <li><a href="/i">个人资料</a></li>
+                <li><a href="/i/updateUser">修改资料</a></li>
+                <li class="active"><a href="">修改邮箱</a></li>
+            </ul>
+            <ul class="nav nav-sidebar">
+                <li><a href="" style="font-size: 22px;">new item</a></li>
+                <li><a href="">Nav item again</a></li>
+                <li><a href="">One more nav</a></li>
+                <li><a href="">Another nav item</a></li>
+                <li><a href="">More navigation</a></li>
+            </ul>
+        </div>
+        <div class="col-sm-8 col-md-9 main">
+            <h1 class="page-header">修改绑定邮箱</h1>
+        </div>
+        <div class="col-sm-8 col-md-9 alert1"></div>
+
+        <form action="">
+            <div class="col-sm-8 col-md-9">
+                <div class="row">
+                    <div class="col-md-12">
+                        <input type="hidden" class="form-control" id="oldemail" value="{{ email }}">
+                    </div>
+                    <div class="col-md-12 mbom">
+                        <div class="col-md-3">
+                            <h3>绑定新邮箱：</h3>
+                        </div>
+                        <div class="col-md-8">
+                            <input type="text" class="form-control" id="newemail" placeholder="绑定新邮箱">
+                        </div>
+                    </div>
+                    <div class="col-md-12 mbom">
+                        <div class="col-md-3">
+                            <h3>邮箱验证码：</h3>
+                        </div>
+                        <div class="col-md-8">
+                            <div class="input-group">
+                                <input type="text" id="authcode" class="form-control" placeholder="输入验证码:">
+                                <span class="input-group-addon btn" id="addon0">点击获取验证码</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12 mbom">
+                        <div class="col-md-3">
+                            <h3>原密码：</h3>
+                        </div>
+                        <div class="col-md-8">
+                            <div class="input-group">
+                                <input type="password" id="pswd"class="form-control" placeholder="原密码"
+                                    aria-describedby="basic-addon2">
+                                <span class="input-group-addon" id="basic-addon1"><i class="glyphicon"></i></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12 mbom">
+                        <div class="col-md-3">
+                            <h3>新密码：</h3>
+                        </div>
+                        <div class="col-md-8">
+                            <div class="input-group">
+                                <input type="password" id="origpswd" class="form-control" placeholder="新密码,可以与原密码一致"aria-describedby="basic-addon2">
+                                <span class="input-group-addon" id="basic-addon2"><i class="glyphicon"></i></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12 mbom">
+                        <div class="col-md-3">
+                            <h3>确认密码：</h3>
+                        </div>
+                        <div class="col-md-8">
+                            <div class="input-group">
+                                <input type="password" id="reptpswd" class="form-control" placeholder="确认密码："aria-describedby="basic-addon2">
+                                <span class="input-group-addon" id="basic-addon3"><i class="glyphicon"></i></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12 mbom">
+                        <div class="col-md-5">
+                            <h3>
+                                <button type="button" class="btn btn-danger" id="gouser">取消</button>
+                            </h3>
+                        </div>
+                        <div class="col-md-7">
+                            <button type="button" class="btn btn-success" id="modifyEmail">确认</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<div class="modal" id="sureinfo">
+    <div class="modal-dialog modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h3>结果确认</h3>
+        </div>
+        <div class="modal-body">
+            <h3 id="old"></h3>
+            <h3 id="new"></h3>
+            <h3>是否继续？</h3>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-danger" data-dismiss="modal">取消</button>
+            <button class="btn btn-info" id="continue">继续</button>
+        </div>
+    </div>
+</div>
+<div class="modal" id="modifysucs">
+    <div class="modal-dialog modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h2 style="text-align: center;">修改成功，是否现在返回登录。</h2>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-danger" data-dismiss="modal">取消</button>
+            <button class="btn btn-info" id="godlu">登录</button>
+        </div>
+    </div>
+</div>
+
+{{ /block }}
+{{ block "script" }}
+<script>
+    function toggelEye($el) {
+        var i
+        $el.click(function () {
+            i = parseInt($el.attr("data"))
+            if (i%2 == 0 ) {
+                $el.children().removeClass('glyphicon-eye-close')
+                $el.children().addClass('glyphicon-eye-open')
+                $el.prev().attr("type", "text")
+                $el.attr("data", 1)
+            }else{
+                $el.children().removeClass('glyphicon-eye-open')
+                $el.children().addClass('glyphicon-eye-close')
+                $el.prev().attr("type", "password")
+                $el.attr("data", 0)
+            }
+        })
+    }
+    $('.input-group-addon').attr("data", 0)
+    $('.glyphicon').addClass('glyphicon-eye-close')
+    toggelEye($('#basic-addon1'))
+    toggelEye($('#basic-addon2'))
+    toggelEye($('#basic-addon3'))
+    
+    function authEmail(data) {
+        $.ajax({
+            type:"post",
+            url: "/authcode",
+            data: data,
+            success: function (rst) {
+                if (rst.status_code == 1) {
+                    var errinfo = '发送失败，请稍后重试！'
+                    var errhtml = `<div class="alert alert-danger alert-dismissable">
+                    <button type="button" class="close" data-dismiss="alert"aria-hidden="true">&times;</button>
+                    ${errinfo}
+                    </div>`
+                    $('.alert1').html(html)
+                }else{
+                    var sucsinfo = '发送成功，请注意查看邮箱，验证码5分钟内有效！'
+                    var sucshtml = `<div class="alert alert-info alert-dismissable">
+                    <button type="button" class="close" data-dismiss="alert"aria-hidden="true">&times;</button>
+                    ${sucsinfo}
+                    </div>`;
+                    $('.alert1').html(sucshtml)
+                }
+            }
+        })
+    }
+
+    function yanzhma() {
+        $('#addon0').css({"cursor": "not-allowed"})
+
+        var i = 90
+        var timer = setInterval(() => {
+            i--;
+            $('#addon0').text( i + "秒后重发")
+            $('#addon0').off("click")
+
+            if (i <= 0) {
+                clearInterval(timer)
+                $('#addon0').text("重发")
+                $('#addon0').css({"cursor": "pointer"})
+                $('#addon0').on("click", addon0Click)
+            }
+        }, 1000);
+        setTimeout(() => {
+            $('.alert').remove()
+        }, 15000);
+    }
+    
+    function addon0Click() {
+        var oldemail = $('#oldemail').val().trim()
+        var newemail = $('#newemail').val().trim()
+
+        if (oldemail!=newemail) {
+            $('#sureinfo').modal("show")
+            $('#old').text("原邮箱为"+oldemail)
+            $('#new').text("新邮箱为"+newemail)
+
+            $('#continue').click(()=>{
+                $('#sureinfo').modal("hide")
+
+                $.get("/queryEmail", {email: newemail},(rst)=> {
+                    if (rst.status_code == 0) {
+                        popAlert('新邮箱也已经注册过了！')
+                    }else if (rst.status_code == 1){
+                        popAlert('数据库错误，请稍后再试！')
+                    }else{
+                        yanzhma()
+                        authEmail({email:newemail})
+                    }
+                })
+                
+            })
+        }else{
+            yanzhma()
+            authEmail({email:newemail})
+        }
+    }
+    $('#addon0').on("click",addon0Click)
+    
+    function getVal() {
+        return {
+            origpswd : $('#origpswd').val().trim(),
+            reptpswd : $('#reptpswd').val().trim(),
+            pswd : $('#pswd').val().trim(),
+            email : $('#oldemail').val().trim(),
+            newemail : $('#newemail').val().trim(),
+            authcode:$('#authcode').val().trim()
+        }
+    }
+
+    function pswdSame($elorig, $elrept) {
+        var origpswd = $elorig.val().trim()
+        var reptpswd = $elrept.val().trim()
+
+        if (origpswd === reptpswd) {
+            return {
+                origpswd: origpswd,
+                reptpswd: reptpswd
+            }
+        }
+        return false;
+    }
+
+    function popAlert(errinfo) {
+        var errhtml = `<div class="alert alert-danger alert-dismissable">
+        <button type="button" class="close" data-dismiss="alert"aria-hidden="true">&times;</button>
+        ${errinfo}
+        </div>`
+        $('.alert1').html(errhtml)
+        setTimeout(() => {
+            $('.alert').remove()
+        }, 15000);
+    }
+
+    $('#godlu').click(()=>{
+        window.location.href = "/logout"
+        // $.get("/logout")
+    })
+    $('#gouser').click(()=>{
+        window.location.href = "/i"
+    })
+
+    $('#modifyEmail').click(()=>{
+        var newpswd = pswdSame($('#origpswd'), $('#reptpswd'))
+        var emailEq = pswdSame($('#oldemail'), $('#newemail'))
+        if (!newpswd) {
+            popAlert('重复密码不匹配！请检查。')
+        }else {
+           $.ajax({
+               type:"post",
+               url:"/i/modifyEmail",
+               data: getVal(),
+               success:function (rst) {
+                if (rst.status_code == 2) {
+                    popAlert('验证码错误！你怎么回事')
+                }else if (rst.status_code == 1) {
+                    popAlert('原密码错误！')
+                }else if(rst.status_code == -1){
+                    popAlert('数据库错误！请稍后重试')
+                }else{
+                    $('#modifysucs').modal("show")
+                }
+            }
+        })
+        }
+    })
+
+</script>
+{{/block}}
+ 

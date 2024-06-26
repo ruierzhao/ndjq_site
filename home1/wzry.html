@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>wzry</title>
+    <script src="../public/js/echarts.min.js"></script>
+</head>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+    }
+
+    body {
+        background: url("../public/img/yao.jpg") no-repeat;
+        background-attachment: fixed;
+        background-size: 100vw 100vh;
+        color: beige;
+    }
+
+    .main {
+        width: 85vw;
+        height: 100vh;
+        margin: 0 auto;
+    }
+
+    .titleName {
+        text-align: center;
+        background: rgba(226, 226, 217, 0.1);
+        padding: 2vh;
+    }
+
+    .top,
+    .mid {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    #left1 {
+        flex: 1;
+        height: 48vh;
+        background: rgba(236, 240, 183,0.4);
+        border-bottom: 1px solid rgb(150, 150, 151);
+        border-right: 1px solid rgb(150, 150, 151);
+
+    }
+
+    #right1 {
+        flex: 1;
+        height: 48vh;
+        background: rgba(236, 240, 183,0.4);
+    }
+
+    #left2 {
+        flex: 1;
+        height: 48vh;
+        background: rgba(236, 240, 183,0.4);
+    }
+
+    #right2 {
+        flex: 1;
+        height: 48vh;
+        background: rgba(236, 240, 183,0.4);
+        border-top: 1px solid rgb(150, 150, 151);
+        border-left: 1px solid rgb(150, 150, 151);
+    }
+
+    .btm {
+        width: 100%;
+        height: 50vh;
+        background: rgba(236, 240, 183,0.4);
+    }
+</style>
+
+<body>
+    <div class="main">
+        <div class="titleName">
+            <h3>
+                王者荣耀英雄属性<span style="font-size: 16px;">&nbsp;(数据爬取不全)</span>
+            </h3>
+        </div>
+        <div class="top">
+            <div class="left" id="left1"></div>
+            <div class="right" id="right1"></div>
+        </div>
+        <div class="mid">
+            <div class="left" id="left2"></div>
+            <div class="right" id="right2"></div>
+        </div>
+        <div class="btm" id="btm"></div>
+    </div>
+</body>
+<script>
+    function eachData(arr, i) {
+        var newArr = [];
+        arr.forEach(function (ite, index) {
+            newArr.push(ite[i]);
+            console.log(ite);
+            
+        });
+        return newArr;
+    }
+
+    function radarData(arr, list) {
+        arr.forEach(function (item) {
+            list.push({
+                value: item.slice(2),
+                name: item[1],
+            })
+        })
+    }
+
+    //饼图
+    !(function () {
+        var mycharts = echarts.init(document.getElementById('left2'));
+        var option = {
+            title: {
+                text: '分类不重叠',
+                right: 20
+            },
+            tooltip: {
+                trigger: 'item',
+                formatter: '{a} <br/>{b} : {c} ({d}%)'
+            },
+            legend: {
+                type: 'scroll',
+                orient: 'vertical',
+                right: 10,
+                top: 40,
+                data: ["战士(fighter)", "法师(mage)", "坦克(tank)", '刺客(assassi)', "射手(marksman)", "辅助(support)"]
+            },
+            series: [{
+                name: "英雄分类",
+                type: 'pie',
+                radius: '55%',
+                center: ['45%', '50%'],
+                data: [{
+                        value: 22,
+                        name: '战士(fighter)'
+                    },
+                    {
+                        value: 27,
+                        name: '法师(mage)'
+                    },
+                    {
+                        value: 13,
+                        name: '坦克(tank)'
+                    },
+                    {
+                        value: 13,
+                        name: '刺客(assassi)'
+                    },
+                    {
+                        value: 13,
+                        name: '射手(marksman)'
+                    },
+                    {
+                        value: 11,
+                        name: '辅助(support)'
+                    }
+                ],
+                emphasis: {
+                    itemStyle: {
+                        shadowBlur: 10,
+                        shadowOffsetX: 0,
+                        shadowColor: 'rgba(0, 0, 0, 0.5)'
+                    }
+                }
+            }]
+        };
+
+        mycharts.setOption(option);
+        window.addEventListener('resize', function () {
+            mycharts.resize();
+        });
+    })();
+
+    !(function () {
+        var mycharts = echarts.init(document.getElementById('right2'));
+        option = {
+            title: {
+                text: '分类不重叠',
+                left: 10
+            },
+            tooltip: {
+                trigger: 'item',
+                formatter: '{a} <br/>{b} : {c} ({d}%)'
+            },
+            legend: {
+                left: 10,
+                top: 'center',
+                orient: 'vertical',
+                data: ["战士(fighter)", "法师(mage)", "坦克(tank)", '刺客(assassi)', "射手(marksman)", "辅助(support)"]
+            },
+            toolbox: {
+                show: true,
+                feature: {
+                    mark: {
+                        show: true
+                    },
+                    dataView: {
+                        show: true,
+                        readOnly: false
+                    },
+                    magicType: {
+                        show: true,
+                        type: ['pie', 'funnel']
+                    },
+                    restore: {
+                        show: true
+                    },
+                    saveAsImage: {
+                        show: true
+                    }
+                }
+            },
+            series: [{
+                    name: '英雄分类(半径模式)',
+                    type: 'pie',
+                    radius: "60%",
+                    center: ['45%', '50%'],
+                    roseType: 'radius',
+                    label: {
+                        show: false
+                    },
+                    emphasis: {
+                        label: {
+                            show: true
+                        }
+                    },
+                    data: [{
+                            value: 22,
+                            name: '战士(fighter)'
+                        },
+                        {
+                            value: 27,
+                            name: '法师(mage)'
+                        },
+                        {
+                            value: 13,
+                            name: '坦克(tank)'
+                        },
+                        {
+                            value: 13,
+                            name: '刺客(assassi)'
+                        },
+                        {
+                            value: 13,
+                            name: '射手(marksman)'
+                        },
+                        {
+                            value: 11,
+                            name: '辅助(support)'
+                        }
+                    ],
+                },
+
+            ]
+        };
+        mycharts.setOption(option);
+        window.addEventListener('resize', function () {
+            mycharts.resize();
+        });
+    })();
+    // //饼图
+
+    // 雷达图
+    !(function () {
+        var mycharts = echarts.init(document.getElementById("left1"));
+        var data1 = [
+            ["16035", "瑶", 0, 7, 8, 5],
+            ["9509", "妲己", 1, 4, 9, 3],
+            ["9511", "安琪拉", "5", "9", "8", "6"],
+            ["9513", "狄仁杰", "5", "7", "8", "6"],
+            ["9514", "韩信", "3", "6", "8", "8"],
+            ["16190", "蒙犽", "3", "8", "5", "5"],
+            ["16226", "李信", "6", "8", "7", "6"],
+            ["16278", "镜", "2", "6", "8", "5"],
+        ];
+
+        var list = []
+        radarData(data1, list)
+        var option = {
+            title: {
+                text: "基本属性",
+                top: 10,
+                right: 10,
+            },
+            tooltip: {
+                trigger: "item",
+                backgroundColor: "#333",
+            },
+            legend: {
+                type: "scroll",
+                orient: 'vertical',
+                top: 50,
+                right: 20,
+                data: eachData(data1, 1),
+            },
+            radar: {
+                //圈数设置
+                shape: "circle",
+                splitNumber: 10,
+                axisLine: {
+                    lineStyle: {
+                        color: "#000",
+                    },
+                },
+                indicator: [{
+                        text: "生存",
+                        max: 10
+                    },
+                    {
+                        text: "攻击",
+                        max: 10
+                    },
+                    {
+                        text: "技能",
+                        max: 10
+                    },
+                    {
+                        text: "上手",
+                        max: 10
+                    },
+                ],
+            },
+            series: {
+                type: "radar",
+                symbol: "circle",
+                symbolSize: 8,
+
+                areaStyle: {
+                    normal: {
+                        width: 1,
+                        opacity: 0.2,
+                    },
+                },
+                data: list
+            }
+        };
+        mycharts.setOption(option);
+        window.addEventListener("resize", function () {
+            mycharts.resize();
+        });
+    })();
+
+    !(function () {
+        var mycharts = echarts.init(document.getElementById("right1"));
+        var data2 = [
+            ["9543", "露娜", "1", "4", "10", "8"],
+            ["9544", "刘备", "3", "9", "3", "7"],
+            ["9545", "后羿", "3", "6", "8", "6"],
+            ["9546", "钟馗", "9", "3", "7", "8"],
+            ["9547", "张飞", "9", "2", "5", "7"],
+            ["9548", "李元芳", "4", "8", "4", "5"],
+            ["9549", "刘邦", "8", "4", "7", "5"],
+            ["9550", "不知火舞", "3", "5", "9", "9"],
+            ["9551", "虞姬", "3", "8", "5", "7"],
+            ["9552", "关羽", "9", "5", "6", "7"],
+            ["9553", "蔡文姬", "6", "3", "5", "8"],
+            ["9554", "夏侯惇", "4", "6", "5", "4"],
+            ["9555", "雅典娜", "3", "6", "8", "6"],
+            ["9556", "马可波罗", "7", "5", "6", "6"],
+            ["9557", "橘右京", "6", "6", "5", "2"],
+            ["11824", "成吉思汗", "4", "8", "4", "7"],
+            ["11825", "杨戬", "8", "7", "6", "6"],
+            ["12551", "太乙真人", "8", "4", "5", "5"],
+            ["13004", "哪吒", "9", "7", "7", "9"],
+            ["13049", "诸葛亮", "3", "6", "8", "8"],
+            ["13073", "黄忠", "2", "8", "4", "3"],
+            ["13091", "大乔", "3", "3", "6", "8"],
+            ["13141", "艾琳", "3", "6", "8", "6"],
+            ["13255", "东皇太一", "9", "5", "6", "6"],
+            ["14488", "干将莫邪", "3", "6", "8", "9"]
+        ];
+
+        var list = []
+        radarData(data2, list)
+
+        var option = {
+            title: {
+                text: "基本属性",
+                top: 10,
+                left: 10,
+            },
+            tooltip: {
+                trigger: "item",
+                backgroundColor: "rgba(0,0,250,0.2)",
+            },
+            legend: {
+                type: "scroll",
+                orient: 'vertical',
+                top: 50,
+                left: 20,
+                data: eachData(data2, 1),
+            },
+            radar: {
+                //圈数设置
+                shape: "circle",
+                splitNumber: 5,
+                axisLine: {
+                    lineStyle: {
+                        color: "#000",
+                    },
+                },
+                indicator: [{
+                        text: "生存",
+                        max: 10
+                    },
+                    {
+                        text: "攻击",
+                        max: 10
+                    },
+                    {
+                        text: "技能",
+                        max: 10
+                    },
+                    {
+                        text: "上手",
+                        max: 10
+                    },
+                ],
+            },
+            series: {
+                type: "radar",
+                symbol: "circle",
+                symbolSize: 8,
+
+                areaStyle: {
+                    normal: {
+                        width: 1,
+                        opacity: 0.1,
+                    },
+                },
+                data: list
+            }
+        };
+        mycharts.setOption(option);
+        window.addEventListener("resize", function () {
+            mycharts.resize();
+        });
+    })();
+
+
+    !(function () {
+        var mycharts = echarts.init(document.getElementById('btm'));
+        var data = [
+            ['350', '马可波罗'],
+            ['350', '虞姬'],
+            ['380', '关羽'],
+            ['400', '宫本武藏'],
+            ['350', '李元芳'],
+            ['350', '东皇太一'],
+            ['350', '百里守约'],
+            ['350', '黄忠'],
+            ['360', '王昭君'],
+            ['380', '干将莫邪'],
+            ['360', '甄姬'],
+            ['360', '鲁班七号'],
+            ['350', '妲己'],
+            ['360', '大乔'],
+            ['360', '钟馗'],
+            ['360', '安琪拉'],
+            ['360', '艾琳'],
+            ['360', '后羿'],
+            ['370', '高渐离'],
+            ['370', '芈月'],
+            ['370', '成吉思汗'],
+            ['410', '雅典娜'],
+            ['370', '廉颇'],
+            ['400', '兰陵王'],
+            ['360', '狄仁杰'],
+            ['370', '典韦'],
+            ['370', '项羽'],
+            ['360', '蔡文姬'],
+            ['400', '刘邦'],
+            ['380', '赵云'],
+            ['380', '钟无艳'],
+            ['380', '韩信'],
+            ['380', '墨子'],
+            ['350', '鬼谷子'],
+            ['380', '哪吒'],
+            ['380', '花木兰'],
+            ['350', '孙尚香'],
+            ['350', '武则天'],
+            ['380', '阿珂'],
+            ['350', '貂蝉'],
+            ['350', '姜子牙'],
+            ['380', '夏侯惇'],
+            ['380', '杨戬'],
+            ['380', '曹操'],
+            ['380', '张飞'],
+            ['350', '张良'],
+            ['380', '吕布'],
+            ['380', '太乙真人'],
+            ['380', '刘婵'],
+            ['380', '露娜'],
+            ['380', '娜可露露'],
+            ['390', '李白'],
+            ['390', '白起'],
+            ['390', '亚瑟'],
+            ['390', '老夫子'],
+            ['390', '不知火舞'],
+            ['380', '达摩'],
+            ['350', '孙膑'],
+            ['350', '嬴政'],
+            ['350', '扁鹊'],
+            ['350', '周瑜'],
+            ['350', '诸葛亮'],
+            ['350', '小乔'],
+            ['380', '牛魔'],
+            ['380', '孙悟空'],
+            ['380', '刘备'],
+            ['380', '程咬金'],
+            ['390', '橘右京'],
+            ['390', '庄周']
+        ]
+        var heroRun = eachData(data, 0)
+        var heroName = eachData(data, 1)
+
+        var itemStyle = {
+            opacity: 0.8,
+            shadowBlur: 10,
+            shadowOffsetX: 0,
+            shadowOffsetY: 0,
+            shadowColor: 'rgba(0, 0, 0, 0.5)'
+        };
+
+        var option = {
+            color: [
+                '#80F1BE'
+            ],
+            legend: {
+                top: "5%",
+                textStyle: {
+                    color: '#333',
+                    fontSize: 22
+                },
+            },
+            grid: {
+                left: '4%',
+                right: '5%',
+                top: '13%',
+                bottom: '15%'
+            },
+            tooltip: {
+                padding: 10,
+                backgroundColor: '#333',
+                borderColor: '#777',
+                borderWidth: 1,
+                trigger: "axis",
+                formatter: '移速<br/>{b}:{c}',
+                axisPointer: {
+                    snap: true,
+                    axis: "auto"
+                }
+            },
+            xAxis: {
+                type: 'category',
+                name: 'hero',
+                data: heroName,
+                nameTextStyle: {
+                    color: "#333",
+                    fontSize: 12
+                },
+                splitLine: {
+                    show: false
+                },
+                axisLabel: {
+                    color: "#333",
+                    interval: 0,
+                    rotate: -60
+                },
+                axisTick: {
+                    show: false
+                },
+                axisLine: {
+                    lineStyle: {
+                        color: '#eee'
+                    }
+                }
+            },
+            yAxis: {
+                type: 'value',
+                name: 'runSpeed',
+                nameGap: 20,
+                min: 330,
+                max: 430,
+                nameTextStyle: {
+                    color: '#333',
+                    fontSize: 16
+                },
+                axisLabel: {
+                    color: "#333",
+                },
+                axisLine: {
+                    lineStyle: {
+                        color: '#eee'
+                    }
+                },
+
+                minorTick: {
+                    show: true
+                },
+                splitLine: {
+                    show: false
+                }
+            },
+            series: [{
+                name: '移速对比',
+                type: 'scatter',
+                itemStyle: itemStyle,
+                data: heroRun
+            }, ]
+        };
+
+        mycharts.setOption(option);
+
+        window.addEventListener('resize', function () {
+            mycharts.resize();
+        });
+    })();
+</script>
+
+</html>

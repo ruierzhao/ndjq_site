@@ -1,0 +1,291 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset = "UTF-8">
+	<meta http-equiv ="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    
+    <meta name="description" content="明日愁等明日来">
+    <meta name="keywords" content="个人网站，有趣web应用，网站制作，天气查询">
+    <meta name="theme-color" content="#279de4">
+
+    <link rel="icon" type="image/png" sizes="32x32" href="/public/img/zhao.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/public/img/zhao.png">
+
+    <title>ruier - web趣应用{{ block "title" }}{{ /block }}</title>
+
+    
+    {{ block "style" }}{{ /block }}
+
+</head>
+<body>
+    {{ block "container" }}{{ /block }}
+</body>
+{{ block "script" }}{{ /block }}
+</html>
+
+
+<li class="dropdown">
+    <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" role="button">ruier<span
+            class="caret"></span></a>
+    <ul class="dropdown-menu" style="background: rgb(159, 217, 235);">
+        <li>
+            <a href="javascript:;">
+                <h4>当前用户：</h4>
+            </a>
+        </li>
+        <li role="separator" class="divider"></li>
+        <li>
+            <a href="/user" target="_blank">
+                <h4>个人中心</h4>
+            </a>
+        </li>
+        <li role="separator" class="divider"></li>
+        <li>
+            <a href="/logout">
+                <h4>退出</h4>
+            </a>
+        </li>
+    </ul>
+</li>
+
+
+<div class="audio">
+    <audio controls="controls" autoplay="autoplay" controls="controls">
+        <source src="meijianxue.mp3" type="audio/ogg" />
+        Your browser does not support the audio element.
+    </audio>
+</div>
+<style>
+    tr td{
+        font-size: 14px;
+    color: #4f4f4f;
+    line-height: 22px;
+    padding: 8px;
+    word-break: normal !important;
+    vertical-align: middle;
+    }
+</style>
+
+<script>
+    if (rst.status_code === 0) {
+        console.log(rst.size);
+        console.log(rst.show_counts);
+        show_counts = rst.show_counts
+        var xinyuDOM = '<div class="panel panel-default removeComments">' +
+            '<div class="panel-heading">' +
+            '<p class="panel-title">心语时间:<span class="xtime">' + xtime +
+            '</span></p></div><div class="panel-body xcontent">' + liuyan1 + '</div></div>'
+        $('#comments').prepend(xinyuDOM)
+        $('.removeComments:last-child').remove()
+        $(".page ul li:first").remove()
+        $(".page ul li:last").remove()
+        window.alert("保存成功！")
+    } else if (rst.status_code === 1) {
+        window.alert("保存失败！数据库错误。刷新试试。")
+    } else {
+        $('#fabiao1').addClass("disabled");
+        window.alert("保存失败！不想存，别试了")
+    }
+</script>
+
+
+73560d6211d1bdabf9b3f0ba3778d295aa96e73b3ec43a429e4963107813c08910c51fd662c71008d3d27921b02e429690e4a1743512af6bddc0159f086e05082783b73ab65267cd020a29612d5ad5860b5b5ae358e05b134209b1024dfd2d645538d758bbc29011cebb6d360ed9baa1fb8c8e93ce5b92e4701a31dcde18945a
+
+<p>gcoord的目标是处理web地图中的坐标，目前支持的坐标系已经能满足绝大部分要求，可以用来修正百度地图、高德地图及其它互联网地图坐标系不统一的问题<br>
+    我们通常用经纬度来表示一个地理位置，但是由于一些原因，我们从不同渠道得到的经纬度信息可能并不是在同一个坐标系下。</p>
+<ul>
+    <li>
+        <p>高德地图、腾讯地图以及谷歌中国区地图使用的是<strong>GCJ-02</strong>坐标系</p>
+    </li>
+    <li>
+        <p>百度地图使用的是<strong>BD-09</strong>坐标系</p>
+    </li>
+    <li>
+        <p>底层接口(HTML5 Geolocation或ios、安卓API)通过GPS设备获取的坐标使用的是<strong>WGS-84</strong>坐标系</p>
+    </li>
+    <li>
+        <p>不同的坐标系之间可能有几十到几百米的偏移，所以在开发基于地图的产品，或者做地理数据可视化时，我们需要修正不同坐标系之间的偏差。</p>
+    </li>
+    <li>
+        <p><strong>多坐标系支持</strong> - 支持转换互联网地图中所有常见坐标系，可以任意相互转换</p>
+    </li>
+    <li>
+        <p><strong>多格式支持</strong> - 支持转换坐标数组和GeoJSON</p>
+    </li>
+    <li>
+        <p><strong>支持TypeScript</strong> - 支持TypeScript项目</p>
+    </li>
+</ul>
+<h3><a id="_12"></a>为什么需要转换坐标系？</h3>
+<p>因为国内对地理坐标有特殊的政策，所有电子地图必须对位置做偏移处理，这导致了从底层接口得到的经纬度坐标展示在地图上会有偏移。这种偏移不是线性的，不能简单地通过加减某个值来校正，并且不同的地图提供商采用的算法也不一样，例如百度地图和高德地图就采用了不同的偏移方式。更详细的信息可以阅读下文的<a
+        href="#%E5%85%B3%E4%BA%8E%E5%9D%90%E6%A0%87%E7%B3%BB" rel="nofollow">关于坐标系</a>。</p>
+<blockquote>
+    <p>导航电子地图在公开出版、销售、传播、展示和使用前，必须进行空间位置技术处理。<br> — GB 20263―2006《导航电子地图安全处理技术基本要求》，4.1</p>
+</blockquote>
+<p>CRS为坐标系，目标支持以下几种坐标系</p>
+
+<table border="1" cellspacing="0">
+    <thead>
+        <tr>
+            <th>CRS</th>
+            <th>坐标格式</th>
+            <th>说明</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>gcoord.WGS84</td>
+            <td>[lng,lat]</td>
+            <td>WGS-84坐标系，GPS设备获取的经纬度坐标</td>
+        </tr>
+        <tr>
+            <td>gcoord.GCJ02</td>
+            <td>[lng,lat]</td>
+            <td>GCJ-02坐标系，google中国地图、soso地图、aliyun地图、mapabc地图和高德地图所用的经纬度坐标</td>
+        </tr>
+        <tr>
+            <td>gcoord.BD09</td>
+            <td>[lng,lat]</td>
+            <td>BD-09坐标系，百度地图采用的经纬度坐标</td>
+        </tr>
+        <tr>
+            <td>gcoord.BD09LL</td>
+            <td>[lng,lat]</td>
+            <td>同BD09</td>
+        </tr>
+        <tr>
+            <td>gcoord.BD09MC</td>
+            <td>[x,y]</td>
+            <td>BD-09米制坐标，百度地图采用的米制坐标，单位：米</td>
+        </tr>
+        <tr>
+            <td>gcoord.BD09Meter</td>
+            <td>[x,y]</td>
+            <td>同BD09MC</td>
+        </tr>
+        <tr>
+            <td>gcoord.Baidu</td>
+            <td>[lng,lat]</td>
+            <td>百度坐标系，BD-09坐标系别名，同BD-09</td>
+        </tr>
+        <tr>
+            <td>gcoord.BMap</td>
+            <td>[lng,lat]</td>
+            <td>百度地图，BD-09坐标系别名，同BD-09</td>
+        </tr>
+        <tr>
+            <td>gcoord.AMap</td>
+            <td>[lng,lat]</td>
+            <td>高德地图，同GCJ-02</td>
+        </tr>
+        <tr>
+            <td>gcoord.WebMercator</td>
+            <td>[x,y]</td>
+            <td>Web Mercator投影，墨卡托投影，同EPSG3857，单位：米</td>
+        </tr>
+        <tr>
+            <td>gcoord.WGS1984</td>
+            <td>[lng,lat]</td>
+            <td>WGS-84坐标系别名，同WGS-84</td>
+        </tr>
+        <tr>
+            <td>gcoord.EPSG4326</td>
+            <td>[lng,lat]</td>
+            <td>WGS-84坐标系别名，同WGS-84</td>
+        </tr>
+        <tr>
+            <td>gcoord.EPSG3857</td>
+            <td>[x,y]</td>
+            <td>Web Mercator投影，同WebMercator，单位：米</td>
+        </tr>
+        <tr>
+            <td>gcoord.EPSG900913</td>
+            <td>[x,y]</td>
+            <td>Web Mercator投影，同WebMercator，单位：米</td>
+        </tr>
+    </tbody>
+</table>
+<h3><a id="WGS84___36"></a>WGS-84 - 世界大地测量系统</h3>
+<p>WGS-84（World Geodetic System, WGS）是使用最广泛的坐标系，也是世界通用的坐标系，GPS设备得到的经纬度就是在WGS84坐标系下的经纬度。通常通过底层接口得到的定位信息都是WGS84坐标系。</p>
+<h3><a id="GCJ02___39"></a>GCJ-02 - 国测局坐标</h3>
+<p>GCJ-02（G-Guojia国家，C-Cehui测绘，J-Ju局），又被称为火星坐标系，是一种基于WGS-84制定的大地测量系统，由中国国测局制定。此坐标系所采用的混淆算法会在经纬度中加入随机的偏移。</p>
+<p>国家规定，<strong>中国大陆所有公开地理数据都需要至少用GCJ-02进行加密</strong>，也就是说我们从国内公司的产品中得到的数据，一定是经过了加密的。绝大部分国内互联网地图提供商都是使用GCJ-02坐标系，包括高德地图，谷歌地图中国区等。
+</p>
+<h3><a id="BD09___44"></a>BD-09 - 百度坐标系</h3>
+<p>BD-09（Baidu, BD）是百度地图使用的地理坐标系，其在GCJ-02上多增加了一次变换，用来保护用户隐私。从百度产品中得到的坐标都是BD-09坐标系。</p>
+<h3><a id="_47"></a>相互转换</h3>
+<p>GCJ-02和BD-09都是用来对地理数据进行加密的，所以也不会公开逆向转换的方法。理论上，GCJ-02的加密过程是不可逆的，但是可以通过一些方法来逼近接原始坐标，并且这种方式的精度很高。gcoord使用的纠偏方式达到了厘米级的精度，能满足绝大多数情况。
+</p>
+<script>
+    option = {
+    title: {
+        text: '浏览器占比变化',
+        subtext: '纯属虚构',
+        top: 10,
+        left: 10
+    },
+    tooltip: {
+        trigger: 'item',
+        backgroundColor: 'rgba(0,0,250,0.2)'
+    },
+    legend: {
+        type: 'scroll',
+        bottom: 10,
+        data: (function (){
+            var list = [];
+            for (var i = 1; i <=28; i++) {
+                list.push(i + 2000 + '');
+            }
+            return list;
+        })()
+    },
+    visualMap: {
+        top: 'middle',
+        right: 10,
+        color: ['red', 'yellow'],
+        calculable: true
+    },
+    radar: {
+        indicator: [
+            { text: 'IE8-', max: 400},
+            { text: 'IE9+', max: 400},
+            { text: 'Safari', max: 400},
+            { text: 'Firefox', max: 400},
+            { text: 'Chrome', max: 400}
+        ]
+    },
+    series: (function (){
+        var series = [];
+        for (var i = 1; i <= 28; i++) {
+            series.push({
+                name: '浏览器（数据纯属虚构）',
+                type: 'radar',
+                symbol: 'none',
+                lineStyle: {
+                    width: 1
+                },
+                emphasis: {
+                    areaStyle: {
+                        color: 'rgba(0,250,0,0.3)'
+                    }
+                },
+                data: [{
+                    value: [
+                        (40 - i) * 10,
+                        (38 - i) * 4 + 60,
+                        i * 5 + 10,
+                        i * 9,
+                        i * i /2
+                    ],
+                    name: i + 2000 + ''
+                }]
+            });
+        }
+        return series;
+    })()
+};
+</script>
+
+

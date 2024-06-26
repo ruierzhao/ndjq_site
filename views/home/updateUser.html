@@ -1,0 +1,277 @@
+{{ extend "../__layouts/user.html" }}
+{{ block "title" }}修改信息{{ /block }}
+{{ block "style" }}
+<style>
+    .sub-header {
+        padding-bottom: 10px;
+        border-bottom: 1px solid #eee;
+    }
+
+    .navbar-fixed-top {
+        border: 0;
+    }
+
+    .sidebar {
+        display: none;
+    }
+
+    @media (min-width: 768px) {
+        .sidebar {
+            /* position: fixed; */
+            top: 51px;
+            bottom: 0;
+            left: 0;
+            /* z-index: 1000; */
+            display: block;
+            /* padding: 20px 20px 20px 100px; */
+            overflow-x: hidden;
+            overflow-y: auto;
+            /* Scrollable contents if viewport is shorter than content. */
+            background-color: #f5f5f5;
+            border-right: 1px solid #eee;
+        }
+    }
+
+    .nav-sidebar {
+        margin-right: -21px;
+        /* 20px padding + 1px border */
+        margin-bottom: 20px;
+        margin-left: -20px;
+    }
+
+    .nav-sidebar>li>a {
+        padding-right: 20px;
+        padding-left: 20px;
+    }
+
+    .nav-sidebar>.active>a,
+    .nav-sidebar>.active>a:hover,
+    .nav-sidebar>.active>a:focus {
+        color: #fff;
+        background-color: #428bca;
+    }
+
+    .main {
+        padding: 20px;
+        margin-top: 50px;
+    }
+
+    @media (min-width: 768px) {
+        .main {
+            padding-right: 40px;
+            padding-left: 40px;
+        }
+    }
+
+    .main .page-header {
+        margin-top: 0;
+    }
+
+    .placeholders {
+        margin-bottom: 30px;
+        text-align: center;
+        border-bottom: 1px solid rgb(153, 150, 150);
+    }
+
+    .placeholders h4 {
+        margin-bottom: 0;
+    }
+
+    .placeholder {
+        margin-bottom: 20px;
+    }
+
+    .placeholder img {
+        display: inline-block;
+        border-radius: 50%;
+    }
+
+    .col-md-12 {
+        display: flex;
+    }
+
+    .col-md-8 input {
+        height: 90%;
+    }
+
+    textarea {
+        resize: none;
+    }
+
+    .gender {
+        line-height: 2.5;
+        font-size: 21px;
+    }
+
+    .mbom {
+        margin-top: 20px;
+    }
+
+    .mbom .input-group-addon {
+        cursor: pointer;
+    }
+
+    .mbom button {
+        font-size: 20px;
+        padding: 4px 100px;
+        font-weight: 500;
+        margin-bottom: 20px;
+    }
+</style>
+{{ /block }}
+{{ block "container" }}
+<div class="container">
+    <div class="row">
+        <div class="col-sm-2 col-md-3 sidebar">
+            <ul class="nav nav-sidebar">
+                <li><a href="/i" style="font-size: 22px;">个人中心</a></li>
+                <li><a href="/i">个人资料</a></li>
+                <li class="active"><a href="">修改资料</a></li>
+                <li><a href="/i/updatEmail">修改邮箱</a></li>
+            </ul>
+            <ul class="nav nav-sidebar">
+                <li><a href="" style="font-size: 22px;">new item</a></li>
+                <li><a href="">Nav item again</a></li>
+                <li><a href="">One more nav</a></li>
+                <li><a href="">Another nav item</a></li>
+                <li><a href="">More navigation</a></li>
+            </ul>
+        </div>
+        <div class="col-sm-8 col-md-9 main">
+            <h1 class="page-header">完善资料</h1>
+            <div class="row placeholders">
+                <div class="col-xs-6 col-sm-3 placeholder">
+                    <img src="{{ (user.avator)[0] }}"
+                        width="100" height="100" class="img-responsive" alt="Generic placeholder thumbnail">
+                    <h5><a href="javascript:;">历史头像</a></h5>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-8 col-md-9">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="col-md-3">
+                        <h3 style="text-align: right;">昵称：</h3>
+                    </div>
+                    <div class="col-md-8">
+                        <input type="text" class="form-control" id="nkname" placeholder="请输入昵称"value="{{ user.nickname }}">
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="col-md-3">
+                        <h3 style="text-align: right;">真实姓名：</h3>
+                    </div>
+                    <div class="col-md-8">
+                        <input type="text" class="form-control" id="name" placeholder="请输入名字"value="{{ user.name }}">
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="col-md-3">
+                        <h3 style="text-align: right;">邮箱：</h3>
+                    </div>
+                    <div class="col-md-8">
+                        <input type="text" class="form-control" disabled id="email"value="{{ user.email }}">
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="col-md-3">
+                        <h3 style="text-align: right;">性别：</h3>
+                    </div>
+                    <div class="col-md-8 gender">
+                        <label class="checkbox-inline">
+                            <input type="radio" name="genderRadios" id="gender0" value="0" style="height:15px">男
+                        </label>
+                        <label class="checkbox-inline">
+                            <input type="radio" name="genderRadios" id="gender1" value="1"style="height:15px">女
+                        </label>
+                        <label class="checkbox-inline">
+                            <input type="radio" name="genderRadios" id="gender2" value="-1" style="height:15px"checked>保密
+                        </label>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="col-md-3">
+                        <h3 style="text-align: right;">生日：</h3>
+                    </div>
+                    <div class="col-md-8">
+                        <input type="text" class="form-control" id="birthday" placeholder="2020-01-01格式" value="{{ user.birthday }}">
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="col-md-3">
+                        <h3 style="text-align: right;">学历：</h3>
+                    </div>
+                    <div class="col-md-8">
+                        <input type="text" class="form-control" id="education"value="{{ user.education }}">
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="col-md-3">
+                        <h3 style="text-align: right;">学校：</h3>
+                    </div>
+                    <div class="col-md-8">
+                        <input type="text" class="form-control" id="graschool"value="{{ user.graschool }}">
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="col-md-3">
+                        <h3 style="text-align: right;">个人简介：</h3>
+                    </div>
+                    <div class="col-md-7">
+                        <textarea class="form-control" id="bio" rows="6"
+                            placeholder="进入吹牛逼环节，毕业于清华大学，经验丰富，代码风骚、效率恐怖，c/c++、java、php无不精通，熟练掌握各种框架，深山苦练20余年，一天只睡4小时，千里之外定位问题，瞬息之间修复上线。可连续编程100小时不休息，讨论技术方案5小时不喝水，上至带项目、出方案，下至盗账号、啥都能干。"value="{{ user.bio }}"></textarea>
+                    </div>
+                </div>
+                <div class="col-md-12 mbom">
+                    <div class="col-md-5">
+                        <button type="button" class="btn btn-danger" id="gouser">取消</button>
+                    </div>
+                    <div class="col-md-7">
+                        <button type="button" class="btn btn-success"id="modify">保存修改</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{{ /block }}
+{{ block "script" }}
+<script>
+function getVal() {
+    return {
+        nickname: $('#nkname').val().trim(),
+        email:$('#email').val().trim(),
+        name: $('#name').val().trim(),
+        gender: $("input[name='genderRadios']:checked").val().trim(),
+        education:$('#education').val().trim(),
+        graschool:$('#graschool').val().trim(),
+        bio: $('#bio').val().trim(),
+        update_time: Date.now(),
+        birthday: $('#birthday').val().trim()
+    }
+}
+$('#modify').click(function () {
+    var data = getVal()
+    $.ajax({
+        type:"post",
+        url:"/i/modifyUser",
+        data: data,
+        dataType:"json",
+        success: function(rst) {
+            if (rst.status_code == 1) {
+                window.alert("保存失败!")
+            }else if (rst.status_code == -1) {
+                window.alert("数据库错误，稍后再试")
+            }else if (rst.status_code == 2) {
+                window.alert("昵称已存在，请换一个。")
+            }else{
+                window.location = "/i"
+            }
+        }
+    })
+})
+$('#gouser').click(()=>{
+    window.location.href="/i"
+})
+</script>
+{{ /block }}

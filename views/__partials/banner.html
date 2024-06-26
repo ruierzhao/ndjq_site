@@ -1,0 +1,35 @@
+<div class="row">
+    <div class="col-sm-12 col-md-7">
+        <div class="gcoord">
+            <div class="c-prest">
+                <span>请选择当前坐标系：</span>
+                <select name="present-coor" id="prest_opt">
+                    <option value="w" disabled="true">WGS84</option>
+                    <option value="g">GCJ02 </option>
+                    <option value="b" disabled="true">BD09</option>
+                </select>
+                <input id="prest_coor" type="text" placeholder="输入坐标,使用英文分号">
+            </div>
+            <div class="c-dest">
+                <span>请选择目标坐标系：</span>
+                <select name="dest-coor" id="dest_opt">
+                    <option value="w">WGS84</option>
+                    <option value="g" disabled="true">GCJ02 </option>
+                    <option value="b" disabled="true">BD09</option>
+                </select>
+                <input id="dest_coor" type="text" readonly="readonly" value="转换后坐标">
+            </div>
+            <button id="trans">转换</button>
+            <button type="link" onclick="cpy(document.getElementById('dest_coor'))">复制转换后坐标</button>
+            <div class="more"><span style="font-size:16px;color:red">当前页面只支持GCJ转WGS84,</span><a onclick="$('#gcoord_call').modal('show')" href="javascript:;">转换说明</a>，&nbsp;<a href="/gcoord" target="_blank">更多转换</a></div>
+        </div>
+    </div>
+    <div class="hidden-sm hidden-xs col-md-5">
+        <div class="typewaltz">
+            <textarea id="typewaltz"></textarea>
+            <button onclick="cpy(document.getElementById('typewaltz'))">复制文本</button>
+        </div>
+        <div class="more" style="color:snow">进入全屏，<a href="/typing_waltz" target="_blank">点击这里</a></div>
+    </div>
+    
+</div>

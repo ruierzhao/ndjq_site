@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset = "UTF-8">
+	<meta http-equiv ="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    
+    <meta name="description" content="明日愁等明日来">
+    <meta name="keywords" content="个人网站，有趣web应用，网站制作，天气查询">
+    <meta name="theme-color" content="#279de4">
+
+    <link rel="icon" type="image/png" sizes="32x32" href="/public/img/zhao.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/public/img/zhao.png">
+        
+    <title>ruier - web趣应用-typingWaltz-键舞者</title>
+	<title></title>
+	<style>
+	body{
+		background: #3A3333;
+	}
+	.main {
+		margin-left: 2em;
+		margin-right: 2em;
+		font-family: sans-serif;
+		text-align: center;
+		background-color: #000;
+		color: #fff;
+	}
+	textarea {
+		background-color: #18191A;
+		color: #fff;
+		width: 100%;
+		height: 100%;
+		font-size: 15pt;
+		box-sizing:border-box;
+		border: 1px solid #141312;
+		box-sizing: border-box;
+		resize: none;
+	}
+	</style>
+</head>
+<body>
+	<div class="main">
+		<textarea rows="40" cols="80">type here!</textarea>
+	</div>
+
+	<script src="/public/js/typewaltz.js"></script>
+	<script>
+	POWERMODE.colorful = false;
+	document.body.addEventListener('input', POWERMODE);
+	</script>
+</body>
+</html>

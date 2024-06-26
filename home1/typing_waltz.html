@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>typingWaltz-键舞者</title>
+	<script src="js/typewaltz.js"></script>
+	<style>
+	body{
+		background: #3A3333;
+	}
+	.main {
+		margin-left: 2em;
+		margin-right: 2em;
+		font-family: sans-serif;
+		text-align: center;
+		background-color: #000;
+		color: #fff;
+	}
+	textarea {
+		background-color: #18191A;
+		color: #fff;
+		width: 100%;
+		height: 100%;
+		font-size: 15pt;
+		box-sizing:border-box;
+		border: 1px solid #141312;
+		box-sizing: border-box;
+		resize: none;
+	}
+	</style>
+</head>
+<body>
+	<div class="main">
+		<textarea rows="40" cols="80">type here!</textarea>
+	</div>
+
+	<script src="js/typewaltz.js"></script>
+	<script>
+	POWERMODE.colorful = false;
+	document.body.addEventListener('input', POWERMODE);
+	</script>
+</body>
+</html>

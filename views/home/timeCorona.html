@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset = "UTF-8">
+	<meta http-equiv ="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    
+    <meta name="description" content="明日愁等明日来">
+    <meta name="keywords" content="个人网站，有趣web应用，网站制作，天气查询">
+    <meta name="theme-color" content="#279de4">
+
+    <link rel="icon" type="image/png" sizes="32x32" href="/public/img/zhao.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/public/img/zhao.png">
+    <title> - 时间轮盘 - </title>
+    <script  src = "http://libs.baidu.com/jquery/1.7.2/jquery.min.js" ></script>
+
+    <style>
+        body {
+            border: 0;
+            margin: 0;
+            padding: 0;
+            color: #000000;
+            overflow: visible;
+            width: 100%;
+            height: 100%;
+            font-size: 14px;
+            background: linear-gradient(-45deg, #EE7752, #E73C7E, #23A6D5, #23D5AB);
+            background-size: 400% 400%;
+            -webkit-animation: Gradient 15s ease infinite;
+            -moz-animation: Gradient 15s ease infinite;
+            animation: Gradient 15s ease infinite;
+        }
+
+        @-webkit-keyframes Gradient {
+            0% {
+                background-position: 0% 50%
+            }
+            50% {
+                background-position: 100% 50%
+            }
+            100% {
+                background-position: 0% 50%
+            }
+        }
+
+        @-moz-keyframes Gradient {
+            0% {
+                background-position: 0% 50%
+            }
+            50% {
+                background-position: 100% 50%
+            }
+            100% {
+                background-position: 0% 50%
+            }
+        }
+
+        @keyframes Gradient {
+            0% {
+                background-position: 0% 50%
+            }
+            50% {
+                background-position: 100% 50%
+            }
+            100% {
+                background-position: 0% 50%
+            }
+        }
+
+        * {
+            font-family: 'Righteous', cursive;
+        }
+
+        .con {
+            overflow: hidden;
+            position: relative;
+            width: 96vmin;
+            height: 96vmin;
+            top: calc(50vh - 48vmin);
+            margin: 0 auto;
+        }
+
+        .container {
+            position: absolute;
+            top: calc(50% - 7px);
+            left: 44.5%;
+            width: 100%;
+            height: 100%;
+        }
+
+        .container>div {
+            position: absolute;
+            width: 100%;
+            top: 0;
+            left: 0;
+        }
+
+        .year>div {
+            margin-left: 0;
+        }
+
+        .month>div {
+            margin-left: 11%;
+        }
+
+        .day {
+            margin-left: 18%;
+        }
+
+        .hour {
+            margin-left: 27%;
+        }
+
+        .minute {
+            margin-left: 36%;
+        }
+
+        .second {
+            margin-left: 45%;
+        }
+
+        .month>div {
+            transition: transform 2000ms ease-in 0ms;
+            transform-origin: -5.5% 50%;
+        }
+
+        .day>div {
+            transition: transform 2000ms ease-in 2000ms;
+            transform-origin: -12.5% 50%;
+        }
+
+        .hour>div {
+            transition: transform 2000ms ease-in 4000ms;
+            transform-origin: -21.5% 50%;
+        }
+
+        .minute>div {
+            transition: transform 2000ms ease-in 6000ms;
+            transform-origin: -30.5% 50%;
+        }
+
+        .second>div {
+            transition: transform 2000ms ease-in 8000ms;
+            transform-origin: -39.5% 50%;
+        }
+
+        .year1 {
+            width: 11% !important;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="con">
+        <div class="container year">
+            <div class="year1">二零零零年</div>
+        </div>
+        <div class="container month">
+            <div class="mo1">&nbsp;&nbsp;一月</div>
+            <div class="mo2">&nbsp;&nbsp;二月</div>
+            <div class="mo3">&nbsp;&nbsp;三月</div>
+            <div class="mo4">&nbsp;&nbsp;四月</div>
+            <div class="mo5">&nbsp;&nbsp;五月</div>
+            <div class="mo6">&nbsp;&nbsp;六月</div>
+            <div class="mo7">&nbsp;&nbsp;七月</div>
+            <div class="mo8">&nbsp;&nbsp;八月</div>
+            <div class="mo9">&nbsp;&nbsp;九月</div>
+            <div class="mo10">&nbsp;&nbsp;十月</div>
+            <div class="mo11">十一月</div>
+            <div class="mo12">十二月</div>
+        </div>
+        <div class="container day">
+            <div class="d1">&nbsp;&nbsp;&nbsp;&nbsp;一号</div>
+            <div class="d2">&nbsp;&nbsp;&nbsp;&nbsp;二号</div>
+            <div class="d3">&nbsp;&nbsp;&nbsp;&nbsp;三号</div>
+            <div class="d4">&nbsp;&nbsp;&nbsp;&nbsp;四号</div>
+            <div class="d5">&nbsp;&nbsp;&nbsp;&nbsp;五号</div>
+            <div class="d6">&nbsp;&nbsp;&nbsp;&nbsp;六号</div>
+            <div class="d7">&nbsp;&nbsp;&nbsp;&nbsp;七号</div>
+            <div class="d8">&nbsp;&nbsp;&nbsp;&nbsp;八号</div>
+            <div class="d9">&nbsp;&nbsp;&nbsp;&nbsp;九号</div>
+            <div class="d10">&nbsp;&nbsp;&nbsp;&nbsp;十号</div>
+            <div class="d11">&nbsp;&nbsp;十一号</div>
+            <div class="d12">&nbsp;&nbsp;十二号</div>
+            <div class="d13">&nbsp;&nbsp;十三号</div>
+            <div class="d14">&nbsp;&nbsp;十四号</div>
+            <div class="d15">&nbsp;&nbsp;十五号</div>
+            <div class="d16">&nbsp;&nbsp;十六号</div>
+            <div class="d17">&nbsp;&nbsp;十七号</div>
+            <div class="d18">&nbsp;&nbsp;十八号</div>
+            <div class="d19">&nbsp;&nbsp;十九号</div>
+            <div class="d20">&nbsp;&nbsp;二十号</div>
+            <div class="d21">二十一号</div>
+            <div class="d22">二十二号</div>
+            <div class="d23">二十三号</div>
+            <div class="d24">二十四号</div>
+            <div class="d25">二十五号</div>
+            <div class="d26">二十六号</div>
+            <div class="d27">二十七号</div>
+            <div class="d28">二十八号</div>
+            <div class="d29">二十九号</div>
+            <div class="d30">&nbsp;&nbsp;三十号</div>
+            <div class="d31">三十一号</div>
+        </div>
+        <div class="container hour">
+            <div class="h0">凌晨零点</div>
+            <div class="h1">&nbsp;&nbsp;&nbsp;&nbsp;一点</div>
+            <div class="h2">&nbsp;&nbsp;&nbsp;&nbsp;两点</div>
+            <div class="h3">&nbsp;&nbsp;&nbsp;&nbsp;三点</div>
+            <div class="h4">&nbsp;&nbsp;&nbsp;&nbsp;四点</div>
+            <div class="h5">&nbsp;&nbsp;&nbsp;&nbsp;五点</div>
+            <div class="h6">&nbsp;&nbsp;&nbsp;&nbsp;六点</div>
+            <div class="h7">&nbsp;&nbsp;&nbsp;&nbsp;七点</div>
+            <div class="h8">&nbsp;&nbsp;&nbsp;&nbsp;八点</div>
+            <div class="h9">&nbsp;&nbsp;&nbsp;&nbsp;九点</div>
+            <div class="h10">&nbsp;&nbsp;&nbsp;&nbsp;十点</div>
+            <div class="h11">&nbsp;&nbsp;十一点</div>
+            <div class="h12">&nbsp;&nbsp;十二点</div>
+            <div class="h13">&nbsp;&nbsp;十三点</div>
+            <div class="h14">&nbsp;&nbsp;十四点</div>
+            <div class="h15">&nbsp;&nbsp;十五点</div>
+            <div class="h16">&nbsp;&nbsp;十六点</div>
+            <div class="h17">&nbsp;&nbsp;十七点</div>
+            <div class="h18">&nbsp;&nbsp;十八点</div>
+            <div class="h19">&nbsp;&nbsp;十九点</div>
+            <div class="h20">&nbsp;&nbsp;二十点</div>
+            <div class="h21">二十一点</div>
+            <div class="h22">二十二点</div>
+            <div class="h23">二十三点</div>
+        </div>
+        <div class="container minute">
+            <div class="mi0">&nbsp;&nbsp;&nbsp;&nbsp;零分</div>
+            <div class="mi1">&nbsp;&nbsp;&nbsp;&nbsp;一分</div>
+            <div class="mi2">&nbsp;&nbsp;&nbsp;&nbsp;两分</div>
+            <div class="mi3">&nbsp;&nbsp;&nbsp;&nbsp;三分</div>
+            <div class="mi4">&nbsp;&nbsp;&nbsp;&nbsp;四分</div>
+            <div class="mi5">&nbsp;&nbsp;&nbsp;&nbsp;五分</div>
+            <div class="mi6">&nbsp;&nbsp;&nbsp;&nbsp;六分</div>
+            <div class="mi7">&nbsp;&nbsp;&nbsp;&nbsp;七分</div>
+            <div class="mi8">&nbsp;&nbsp;&nbsp;&nbsp;八分</div>
+            <div class="mi9">&nbsp;&nbsp;&nbsp;&nbsp;九分</div>
+            <div class="mi10">&nbsp;&nbsp;&nbsp;&nbsp;十分</div>
+            <div class="mi11">&nbsp;&nbsp;十一分</div>
+            <div class="mi12">&nbsp;&nbsp;十二分</div>
+            <div class="mi13">&nbsp;&nbsp;十三分</div>
+            <div class="mi14">&nbsp;&nbsp;十四分</div>
+            <div class="mi15">&nbsp;&nbsp;十五分</div>
+            <div class="mi16">&nbsp;&nbsp;十六分</div>
+            <div class="mi17">&nbsp;&nbsp;十七分</div>
+            <div class="mi18">&nbsp;&nbsp;十八分</div>
+            <div class="mi19">&nbsp;&nbsp;十九分</div>
+            <div class="mi20">&nbsp;&nbsp;二十分</div>
+            <div class="mi21">二十一分</div>
+            <div class="mi22">二十二分</div>
+            <div class="mi23">二十三分</div>
+            <div class="mi24">二十四分</div>
+            <div class="mi25">二十五分</div>
+            <div class="mi26">二十六分</div>
+            <div class="mi27">二十七分</div>
+            <div class="mi28">二十八分</div>
+            <div class="mi29">二十九分</div>
+            <div class="mi30">&nbsp;&nbsp;三十分</div>
+            <div class="mi31">三十一分</div>
+            <div class="mi32">三十二分</div>
+            <div class="mi33">三十三分</div>
+            <div class="mi34">三十四分</div>
+            <div class="mi35">三十五分</div>
+            <div class="mi36">三十六分</div>
+            <div class="mi37">三十七分</div>
+            <div class="mi38">三十八分</div>
+            <div class="mi39">三十九分</div>
+            <div class="mi40">&nbsp;&nbsp;四十分</div>
+            <div class="mi41">四十一分</div>
+            <div class="mi42">四十二分</div>
+            <div class="mi43">四十三分</div>
+            <div class="mi44">四十四分</div>
+            <div class="mi45">四十五分</div>
+            <div class="mi46">四十六分</div>
+            <div class="mi47">四十七分</div>
+            <div class="mi48">四十八分</div>
+            <div class="mi49">四十九分</div>
+            <div class="mi50">&nbsp;&nbsp;五十分</div>
+            <div class="mi51">五十一分</div>
+            <div class="mi52">五十二分</div>
+            <div class="mi53">五十三分</div>
+            <div class="mi54">五十四分</div>
+            <div class="mi55">五十五分</div>
+            <div class="mi56">五十六分</div>
+            <div class="mi57">五十七分</div>
+            <div class="mi58">五十八分</div>
+            <div class="mi59">五十九分</div>
+        </div>
+        <div class="container second">
+            <div class="s0">&nbsp;&nbsp;&nbsp;&nbsp;零秒</div>
+            <div class="s1">&nbsp;&nbsp;&nbsp;&nbsp;一秒</div>
+            <div class="s2">&nbsp;&nbsp;&nbsp;&nbsp;两秒</div>
+            <div class="s3">&nbsp;&nbsp;&nbsp;&nbsp;三秒</div>
+            <div class="s4">&nbsp;&nbsp;&nbsp;&nbsp;四秒</div>
+            <div class="s5">&nbsp;&nbsp;&nbsp;&nbsp;五秒</div>
+            <div class="s6">&nbsp;&nbsp;&nbsp;&nbsp;六秒</div>
+            <div class="s7">&nbsp;&nbsp;&nbsp;&nbsp;七秒</div>
+            <div class="s8">&nbsp;&nbsp;&nbsp;&nbsp;八秒</div>
+            <div class="s9">&nbsp;&nbsp;&nbsp;&nbsp;九秒</div>
+            <div class="s10">&nbsp;&nbsp;&nbsp;&nbsp;十秒</div>
+            <div class="s11">&nbsp;&nbsp;十一秒</div>
+            <div class="s12">&nbsp;&nbsp;十二秒</div>
+            <div class="s13">&nbsp;&nbsp;十三秒</div>
+            <div class="s14">&nbsp;&nbsp;十四秒</div>
+            <div class="s15">&nbsp;&nbsp;十五秒</div>
+            <div class="s16">&nbsp;&nbsp;十六秒</div>
+            <div class="s17">&nbsp;&nbsp;十七秒</div>
+            <div class="s18">&nbsp;&nbsp;十八秒</div>
+            <div class="s19">&nbsp;&nbsp;十九秒</div>
+            <div class="s20">&nbsp;&nbsp;二十秒</div>
+            <div class="s21">二十一秒</div>
+            <div class="s22">二十二秒</div>
+            <div class="s23">二十三秒</div>
+            <div class="s24">二十四秒</div>
+            <div class="s25">二十五秒</div>
+            <div class="s26">二十六秒</div>
+            <div class="s27">二十七秒</div>
+            <div class="s28">二十八秒</div>
+            <div class="s29">二十九秒</div>
+            <div class="s30">&nbsp;&nbsp;三十秒</div>
+            <div class="s31">三十一秒</div>
+            <div class="s32">三十二秒</div>
+            <div class="s33">三十三秒</div>
+            <div class="s34">三十四秒</div>
+            <div class="s35">三十五秒</div>
+            <div class="s36">三十六秒</div>
+            <div class="s37">三十七秒</div>
+            <div class="s38">三十八秒</div>
+            <div class="s39">三十九秒</div>
+            <div class="s40">&nbsp;&nbsp;四十秒</div>
+            <div class="s41">四十一秒</div>
+            <div class="s42">四十二秒</div>
+            <div class="s43">四十三秒</div>
+            <div class="s44">四十四秒</div>
+            <div class="s45">四十五秒</div>
+            <div class="s46">四十六秒</div>
+            <div class="s47">四十七秒</div>
+            <div class="s48">四十八秒</div>
+            <div class="s49">四十九秒</div>
+            <div class="s50">&nbsp;&nbsp;五十秒</div>
+            <div class="s51">五十一秒</div>
+            <div class="s52">五十二秒</div>
+            <div class="s53">五十三秒</div>
+            <div class="s54">五十四秒</div>
+            <div class="s55">五十五秒</div>
+            <div class="s56">五十六秒</div>
+            <div class="s57">五十七秒</div>
+            <div class="s58">五十八秒</div>
+            <div class="s59">五十九秒</div>
+        </div>
+        <div></div>
+    </div>
+</body>
+<script>
+    let config = {
+        initializationFlag: false, //是否初始化完成
+    }
+
+    //数字汉字对照表
+    let map = ["零", "一", "二", "三", "四", "五", "六", "七", "八", "九"]
+
+
+    //获取角度
+    function getRotate(num) {
+        return 360 / num;
+    }
+
+    function setMonthRotate() {
+        let time = getTime("month");
+        let month = 12;
+        let rotate = getRotate(month);
+        for (let i = 1; i <= month; i++) {
+            $(('.mo' + i).toString()).css({
+                transform: "rotate(" + (i - time) * rotate + "deg)"
+            })
+        }
+    }
+
+    function setDayRotate() {
+        let time = getTime("day");
+        let day = 31;
+        let rotate = getRotate(day);
+        for (let i = 1; i <= day; i++) {
+            $(('.d' + i).toString()).css({
+                transform: "rotate(" + (i - time) * rotate + "deg)"
+            })
+        }
+    }
+
+    function setHourRotate() {
+        let time = getTime("hour");
+        let hour = 24;
+        let rotate = getRotate(hour);
+        for (let i = 0; i < hour; i++) {
+            $(('.h' + i).toString()).css({
+                transform: "rotate(" + (i - time) * rotate + "deg)"
+            })
+        }
+    }
+
+    function setMinuteRotate() {
+        let time = getTime("minute");
+        let minute = 60;
+        let rotate = getRotate(minute);
+        for (let i = 0; i < minute; i++) {
+            $(('.mi' + i).toString()).css({
+                transform: "rotate(" + (i - time) * rotate + "deg)"
+            })
+        }
+    }
+
+    function setSecondRotate() {
+        let time = getTime("second");
+        let second = 60;
+        let rotate = getRotate(second);
+        for (let i = 0; i < second; i++) {
+            $(('.s' + i).toString()).css({
+                transform: "rotate(" + (i - time) * rotate + "deg)"
+            })
+        }
+    }
+
+    //获取当前时间
+    function getTime(time) {
+        //如果初始化未完成
+        let date = new Date;
+        if (!config.initializationFlag) {
+            switch (time) {
+                case "year":
+                    return date.getFullYear();
+                case "month":
+                    return 1;
+                case "day":
+                    return 1;
+                case "hour":
+                    return 0;
+                case "minute":
+                    return 0;
+                case "second":
+                    return 0;
+            }
+        }
+        switch (time) {
+            case "year":
+                return date.getFullYear();
+            case "month":
+                return date.getMonth() + 1;
+            case "day":
+                return date.getDate();
+            case "hour":
+                return date.getHours();
+            case "minute":
+                return date.getMinutes();
+            case "second":
+                return date.getSeconds();
+        }
+    }
+    //设置高亮
+    function setHL() {
+        let month = getTime("month");
+        $(".mo" + month).css({
+            color: "#ffffff"
+        }).siblings().css({
+            color: "#000000"
+        });
+
+        let day = getTime("day");
+        $(".d" + day).css({
+            color: "#ffffff"
+        }).siblings().css({
+            color: "#000000"
+        });
+
+        let hour = getTime("hour");
+        $(".h" + hour).css({
+            color: "#ffffff"
+        }).siblings().css({
+            color: "#000000"
+        });
+
+        let minute = getTime("minute");
+        $(".mi" + minute).css({
+            color: "#ffffff"
+        }).siblings().css({
+            color: "#000000"
+        })
+
+        let second = getTime("second");
+        $(".s" + second).css({
+            color: "#ffffff"
+        }).siblings().css({
+            color: "#000000"
+        })
+    }
+
+    // 设置所有角度
+    function setAllRotate() {
+        setMonthRotate();
+        setDayRotate();
+        setHourRotate();
+        setMinuteRotate();
+        setSecondRotate();
+    }
+
+    //设置年份
+    function setYears() {
+        let year = getTime("year").toString().split("");
+        let yearCN = [map[year[0]], map[year[1]], map[year[2]], map[year[3]]].join("") + "年";
+        $(".year1").html(yearCN);
+    }
+
+
+    setTimeout(function(config) {
+        config.initializationFlag = true;
+        $(".month>div").css({
+            transition: "transform 200ms ease-in 0ms"
+        })
+        $(".day>div").css({
+            transition: "transform 200ms ease-in 0ms"
+        })
+        $(".hour>div").css({
+            transition: "transform 200ms ease-in 0ms"
+        })
+        $(".minute>div").css({
+            transition: "transform 200ms ease-in 0ms"
+        })
+        $(".second>div").css({
+            transition: "transform 200ms ease-in 0ms"
+        })
+        $(".year1").css({
+            color: "#ffffff"
+        })
+        $("body").css({
+            "text-shadow": "5px 2px 6px #000000"
+        })
+    }, 11000, config);
+
+    setInterval(function(config) {
+        if (config.initializationFlag) {
+            setHL();
+        }
+        setAllRotate();
+        setYears();
+    }, 500, config);
+</script>
+
+</html>

@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>坐标转换</title>
+	<script src="gcoord.js"></script>
+	<style>
+		body{
+			display: flex;
+		}
+		.coord{
+			flex: 1;
+			max-width: 600px;
+			height: 250px;
+			display:grid;
+			grid-template-columns: auto;
+			grid-template-rows: 50px 50px;
+			text-align: center;
+			font-size: 18px;
+			margin-top: 30px;
+		}
+		.coord input{
+			width: 240px;
+			height: 35px;
+			padding: 0 5px;
+			border: 1px solid #31ecef;
+			border-radius: 5px;
+		}
+		textarea{
+			flex: 1;
+			height: 250px;
+			width: 400px;
+			border: 1px solid #31ecef;
+			border-radius: 5px;
+			resize: none;
+			padding: 3px 8px;
+		}
+		.coord select{
+			width: 120px;
+			height: 35px;
+		}
+		button{
+			padding-left: 30px;
+			padding-right: 30px;
+			height: 35px;
+			font-size: 18px;
+			background: #31ecef;
+			color:#000;
+			outline: none;
+			cursor: pointer;
+		}
+	</style>
+</head>
+<body>
+	<div class="coord">
+		<div class="c-top">
+			<span>请选择当前坐标系：</span>
+			<select name="present-coor" id="prest_opt">
+				<option value ="w">WGS84</option>
+				<option value ="g">GCJ02 </option>
+				<option value="b">BD09</option>
+			</select>
+			<input id="prest_coor" type="text"placeholder="输入待转换坐标">
+		</div>
+		<div  class="c-bottom">
+			<span>请选择目标坐标系：</span>
+			<select name="dest-coor" id="dest_opt">
+				<option value ="w">WGS84</option>
+				<option value ="g">GCJ02 </option>
+				<option value="b">BD09</option>
+			</select>
+			<input disabled="disabled" type="text">
+		</div>
+		<p>
+			<button id="multipit">继续插入多点</button>
+			<button id="reset">清空</button>
+			<button id="trans">转换</button>
+		</p>
+	</div>
+	<textarea id="dest_coor" type="text"readonly></textarea>
+
+	<script>
+		//获取DOM元素
+		var prest_coor = document.getElementById('prest_coor'),
+		    prest_opt = document.getElementById('prest_opt'),
+		    trans = document.getElementById('trans'),
+		    multipit = document.getElementById('multipit'),
+		    dest_opt = document.getElementById('dest_opt');
+
+		var prest_arr = [];
+		var geojson =  {
+	        "type": "MultiPoint",
+	        "coordinates": [
+	            [123, 45],
+	            [119, 36]
+	        ]
+	     }
+		prest_coor.onblur = function() {
+			var coor = this.value;
+			coor = coor.trim(coor);
+			if (!coor.match(/\d{1,},\d{1,}/)) {
+				alert('坐标格式错误！请检查。')
+				this.select();
+			}else{
+				prest_arr = coor.split(',');
+			}
+		}
+
+	    multipit.onclick = function() {
+	    	geojson.coordinates.push(prest_arr);
+	    	trans.removeAttribute('disabled')
+	    }
+
+		trans.onclick = function() {
+
+			textarea = document.getElementsByTagName('textarea')[0];
+			document.body.removeChild(textarea);
+
+		    pc_s = prest_opt.value;
+			dc_s = dest_opt.value;
+
+
+			switch (pc_s +'_'+ dc_s) {
+				case 'b_w' :
+					gcoord.transform(geojson, gcoord.BD09, gcoord.WGS84);
+					break;
+				case 'g_w' :
+					gcoord.transform(geojson, gcoord.GCJ02, gcoord.WGS84);
+					break;
+				case 'w_b' :
+					gcoord.transform(geojson, gcoord.WGS84, gcoord.BD09);
+					break;
+				case 'w_g' :
+					gcoord.transform(geojson, gcoord.WGS84, gcoord.GCJ02);
+					break;
+				case 'b_g' :
+					gcoord.transform(geojson, gcoord.BD09, gcoord.GCJ02);
+					break;
+				case 'g_b' :
+					gcoord.transform(geojson,  gcoord.GCJ02, gcoord.BD09);
+					break;
+				default :
+					window.alert( new Error("未知错误！"));
+					break;
+			}
+			var str;
+			var showresult = document.createElement('textarea');
+			document.body.append(showresult);
+
+			geojson.coordinates.forEach(function(item) {
+				showresult.textContent += item + '\n'
+			})
+			this.setAttribute('disabled','disabled')
+		}
+		reset.onclick = function() {
+			geojson.coordinates = [];
+			trans.setAttribute('disabled','disabled')
+		}
+
+	</script>
+</body>
+</html>

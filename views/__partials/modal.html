@@ -1,0 +1,336 @@
+<!-- 登录注册模态框 -->
+<div class="modal" id="dlu">
+    <div class="modal-dialog modal-content modal-lg">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <div class="brandimg">
+                <img src="/public/img/xin.png" width="100%">
+            </div>
+            <h4>不太温馨提示：不要注册了，浪费服务器资源。</h4>
+        </div>
+        <div class="modal-body">
+            <p class="err"id="reptemail">该邮箱已经注册过了！</p>
+            <p class="err"id="reptnickname">昵称已存在！</p>
+            <p class="err"id="reptregemail">邮箱格式错误！</p>
+            <p class="err"id="pswderr">密码8到18位！</p>
+            <p class="err"id="nknmerr">用户名3到12位！</p>
+            <p class="err"id="reptpswd">两次密码不一致！</p>
+            <p class="err"id="empty">还有未填写的选项，请检查！</p>
+            <p class="err"id="dberr">数据库崩了！你走吧</p>
+            <p class="err"id="countlimit">验证码错误？？你咋回事</p>
+            <p class="err"id="nkname_email_err">邮箱或密码错误，请检查重试！</p>
+            <p class="sucs"id="sucsregister">注册成功，可以登录了！</p>
+            <p class="sucs"id="rgauthcode">验证码发送成功,5分钟内有效！</p>
+            <div class="log-left">
+                <form id="dengluLogin">
+                    <table width="100%">
+                        <tr>
+                            <td>
+                                <div class="input-group">
+                                    <span class="input-group-addon"><span
+                                            class="glyphicon glyphicon-user"></span></span>
+                                    <input type="email" class="form-control" placeholder="Email" name="email" required>
+                                </div>
+                            </td>
+                        </tr>
+                        <br>
+                        <tr>
+                            <td>
+                                <div class="input-group">
+                                    <span class="input-group-addon"><span
+                                            class="glyphicon glyphicon-lock"></span></span>
+                                    <input type="password" class="form-control" placeholder="Password" required name="pswd" minlength="8" maxlength="18">
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td align="center">
+                                <p><a href="/updatEmail">忘记密码</a>？问题不大，我会定期删数据库的。</p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td align="center">
+                                <input style="width:150px" class="btn btn-danger" type="submit" value="登录">
+                            </td>
+                        </tr>
+                    </table>
+                </form>
+            </div>
+            <div class="log-right">
+                <form action="" id="register_form">
+                    <table width="100%">
+                        <tr>
+                            <td>
+                                <div class="input-group">
+                                    <span class="input-group-addon"><span
+                                            class="glyphicon glyphicon-user"></span></span>
+                                    <input type="text" class="form-control" placeholder="Nickname" name="nickname" required  minlength="8" maxlength="18" id="renknm" data="0">
+                                </div>
+                            </td>
+                        </tr>
+                        <br>
+                        <tr>
+                            <td>
+                                <div class="input-group">
+                                    <span class="input-group-addon"><span
+                                            class="glyphicon glyphicon-envelope"></span></span>
+                                    <input type="email" id="emailreg" data="0" class="form-control" placeholder="Email" name="email" required>
+                                </div>
+                            </td>
+                        </tr>
+                        <br>
+                        <tr>
+                            <td>
+                                <div class="input-group">
+                                    <span class="input-group-addon"><span
+                                            class="glyphicon glyphicon-lock"></span></span>
+                                    <input type="password" class="form-control" placeholder="请输入8~18位密码" name="pswd" id="rgpswd"data="0" minlength="8" maxlength="18" required>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="input-group">
+                                    <span class="input-group-addon"><span
+                                            class="glyphicon glyphicon-lock"></span></span>
+                                    <input type="password" class="form-control" placeholder="再次输入密码" name="rergpswd" id="rergpswd" data="0"  minlength="8" maxlength="18" required>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="input-group">
+                                    <input type="text" class="form-control" placeholder="输入验证码：" id="addon1">
+                                    <span class="input-group-addon btn" id="addon2">点击获取验证码</span>
+                                </div>
+                            </td>
+                        </tr>
+                        
+                        <tr>
+                            <td align="center">
+                                <input style="width:150px" id="registerlogin" class="btn btn-info" type="button" value="注册">
+                            </td>
+                        </tr>
+                    </table>
+                </form>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-success" id="goregister">我要注册</button>
+            <button style="float: left" class="btn btn-success" id="gologin">返回登录</button>
+        </div>
+    </div>
+</div>
+
+<!-- 表单搜索模态框 -->
+<!-- 输入关键字搜索 -->
+<div class="modal" id="navsearchModal1">
+    <div class="modal-dialog modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h3>找到以下结果</h3>
+        </div>
+        <div class="modal-body" id="insertmodal">
+            <p>对不起哈，没有数据库加持！！！</p>
+            <p>找不到你要的数据！！！</p>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-info" data-dismiss="modal">确定</button>
+        </div>
+    </div>
+</div>
+<!-- 没输入搜索 -->
+<div class="modal" id="navsearchModal2">
+    <div class="modal-dialog modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h3>请输入搜索关键词</h3>
+        </div>
+        <div class="modal-body">
+            <p>没有输入任何数据！！！</p>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-danger" data-dismiss="modal">退出</button>
+        </div>
+    </div>
+</div>
+<!-- 小彩蛋 -->
+<div class="modal" id="publicModal1">
+    <div class="modal-dialog modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h3>呐，你吃荔枝皮吧</h3>
+        </div>
+        <div class="modal-body">
+            <img src="/public/img/lizhi3.jpg" width="100%">
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-danger" data-dismiss="modal">退出</button>
+        </div>
+    </div>
+</div>
+<div class="modal fade in" id="birthday">
+    <div class="modal-dialog modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h3>今天是<span class="year"></span> 年 <span class="mon"></span> 月 <span class="day"></span> 日 </span></h3>
+        </div>
+        <div class="modal-body">
+            <h4>祝今天的你生日快乐</h4>
+            <h4 id="life"></h4>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-info" data-dismiss="modal">确定</button>
+        </div>
+    </div>
+</div>
+
+<!-- 加载中 -->
+<div class="modal fade in" id="lodaing1">
+	<div class="modal-dialog modal-content">
+		<div class="modal-body">
+			<h1>请稍候...</h1>
+			<img src="/public/img/loading.gif">
+		</div>
+	</div>
+</div>
+<div class="modal fade in" id="lodaing2">
+	<div class="modal-dialog modal-content">
+        <div class="modal-header">
+            <h3>查询结果</h3>
+        </div>
+		<div class="modal-body"><h2 id="popWindow"></h2></div>
+	</div>
+</div>
+
+<div class="modal fade in" id="gcoord_call">
+    <div class="modal-dialog modal-content modal-lg">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h3>坐标转换说明</h3>
+        </div>
+        <div class="modal-body">
+            <p>gcoord的目标是处理web地图中的坐标，目前支持的坐标系已经能满足绝大部分要求，可以用来修正百度地图、高德地图及其它互联网地图坐标系不统一的问题<br>
+                我们通常用经纬度来表示一个地理位置，但是由于一些原因，我们从不同渠道得到的经纬度信息可能并不是在同一个坐标系下。</p>
+            <ul>
+                <li>
+                    <p>高德地图、腾讯地图以及谷歌中国区地图使用的是<strong>GCJ-02</strong>坐标系</p>
+                </li>
+                <li>
+                    <p>百度地图使用的是<strong>BD-09</strong>坐标系</p>
+                </li>
+                <li>
+                    <p>底层接口(HTML5 Geolocation或ios、安卓API)通过GPS设备获取的坐标使用的是<strong>WGS-84</strong>坐标系</p>
+                </li>
+                <li>
+                    <p>不同的坐标系之间可能有几十到几百米的偏移，所以在开发基于地图的产品，或者做地理数据可视化时，我们需要修正不同坐标系之间的偏差。</p>
+                </li>
+            </ul>
+            <h3>为什么需要转换坐标系？</h3>
+            <p>因为国内对地理坐标有特殊的政策，所有电子地图必须对位置做偏移处理，这导致了从底层接口得到的经纬度坐标展示在地图上会有偏移。这种偏移不是线性的，不能简单地通过加减某个值来校正，并且不同的地图提供商采用的算法也不一样，例如百度地图和高德地图就采用了不同的偏移方式。更详细的信息可以阅读下文的<a
+                    href="#%E5%85%B3%E4%BA%8E%E5%9D%90%E6%A0%87%E7%B3%BB" rel="nofollow">关于坐标系</a>。</p>
+            <blockquote>
+                <p>导航电子地图在公开出版、销售、传播、展示和使用前，必须进行空间位置技术处理。<br> — GB 20263―2006《导航电子地图安全处理技术基本要求》，4.1</p>
+            </blockquote>
+            <p>CRS为坐标系，目标支持以下几种坐标系</p>
+            <table border="1" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>CRS</th>
+                        <th>坐标格式</th>
+                        <th>说明</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>gcoord.WGS84</td>
+                        <td>[lng,lat]</td>
+                        <td>WGS-84坐标系，GPS设备获取的经纬度坐标</td>
+                    </tr>
+                    <tr>
+                        <td>gcoord.GCJ02</td>
+                        <td>[lng,lat]</td>
+                        <td>GCJ-02坐标系，google中国地图、soso地图、aliyun地图、mapabc地图和高德地图所用的经纬度坐标</td>
+                    </tr>
+                    <tr>
+                        <td>gcoord.BD09</td>
+                        <td>[lng,lat]</td>
+                        <td>BD-09坐标系，百度地图采用的经纬度坐标</td>
+                    </tr>
+                    <tr>
+                        <td>gcoord.BD09LL</td>
+                        <td>[lng,lat]</td>
+                        <td>同BD09</td>
+                    </tr>
+                    <tr>
+                        <td>gcoord.BD09MC</td>
+                        <td>[x,y]</td>
+                        <td>BD-09米制坐标，百度地图采用的米制坐标，单位：米</td>
+                    </tr>
+                    <tr>
+                        <td>gcoord.BD09Meter</td>
+                        <td>[x,y]</td>
+                        <td>同BD09MC</td>
+                    </tr>
+                    <tr>
+                        <td>gcoord.Baidu</td>
+                        <td>[lng,lat]</td>
+                        <td>百度坐标系，BD-09坐标系别名，同BD-09</td>
+                    </tr>
+                    <tr>
+                        <td>gcoord.BMap</td>
+                        <td>[lng,lat]</td>
+                        <td>百度地图，BD-09坐标系别名，同BD-09</td>
+                    </tr>
+                    <tr>
+                        <td>gcoord.AMap</td>
+                        <td>[lng,lat]</td>
+                        <td>高德地图，同GCJ-02</td>
+                    </tr>
+                    <tr>
+                        <td>gcoord.WebMercator</td>
+                        <td>[x,y]</td>
+                        <td>Web Mercator投影，墨卡托投影，同EPSG3857，单位：米</td>
+                    </tr>
+                    <tr>
+                        <td>gcoord.WGS1984</td>
+                        <td>[lng,lat]</td>
+                        <td>WGS-84坐标系别名，同WGS-84</td>
+                    </tr>
+                    <tr>
+                        <td>gcoord.EPSG4326</td>
+                        <td>[lng,lat]</td>
+                        <td>WGS-84坐标系别名，同WGS-84</td>
+                    </tr>
+                    <tr>
+                        <td>gcoord.EPSG3857</td>
+                        <td>[x,y]</td>
+                        <td>Web Mercator投影，同WebMercator，单位：米</td>
+                    </tr>
+                    <tr>
+                        <td>gcoord.EPSG900913</td>
+                        <td>[x,y]</td>
+                        <td>Web Mercator投影，同WebMercator，单位：米</td>
+                    </tr>
+                </tbody>
+            </table>
+            <h3>WGS-84 - 世界大地测量系统</h3>
+            <p>WGS-84（World Geodetic System,
+                WGS）是使用最广泛的坐标系，也是世界通用的坐标系，GPS设备得到的经纬度就是在WGS84坐标系下的经纬度。通常通过底层接口得到的定位信息都是WGS84坐标系。</p>
+            <h3>GCJ-02 - 国测局坐标</h3>
+            <p>GCJ-02（G-Guojia国家，C-Cehui测绘，J-Ju局），又被称为火星坐标系，是一种基于WGS-84制定的大地测量系统，由中国国测局制定。此坐标系所采用的混淆算法会在经纬度中加入随机的偏移。
+            </p>
+            <p>国家规定，<strong>中国大陆所有公开地理数据都需要至少用GCJ-02进行加密</strong>，也就是说我们从国内公司的产品中得到的数据，一定是经过了加密的。绝大部分国内互联网地图提供商都是使用GCJ-02坐标系，包括高德地图，谷歌地图中国区等。
+            </p>
+            <h3>BD-09 - 百度坐标系</h3>
+            <p>BD-09（Baidu, BD）是百度地图使用的地理坐标系，其在GCJ-02上多增加了一次变换，用来保护用户隐私。从百度产品中得到的坐标都是BD-09坐标系。</p>
+            <h3><a id="_47"></a>相互转换</h3>
+            <p>GCJ-02和BD-09都是用来对地理数据进行加密的，所以也不会公开逆向转换的方法。理论上，GCJ-02的加密过程是不可逆的，但是可以通过一些方法来逼近接原始坐标，并且这种方式的精度很高。gcoord使用的纠偏方式达到了厘米级的精度，能满足绝大多数情况。
+            </p>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-info" data-dismiss="modal">确定</button>
+        </div>
+    </div>
+</div>
+

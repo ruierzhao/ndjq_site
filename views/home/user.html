@@ -1,0 +1,179 @@
+{{ extend "../__layouts/user.html" }}
+{{ block "title" }}个人中心{{ /block }}
+{{ block "style" }}
+<style>
+    .sub-header {
+        padding-bottom: 10px;
+        border-bottom: 1px solid #eee;
+    }
+    .navbar-fixed-top {
+        border: 0;
+    }
+    .sidebar {
+        display: none;
+    }
+
+    @media (min-width: 768px) {
+        .sidebar {
+            /* position: fixed; */
+            top: 51px;
+            bottom: 0;
+            left: 0;
+            /* z-index: 1000; */
+            display: block;
+            /* padding: 20px 20px 20px 100px; */
+            overflow-x: hidden;
+            overflow-y: auto;
+            /* Scrollable contents if viewport is shorter than content. */
+            background-color: #f5f5f5;
+            border-right: 1px solid #eee;
+        }
+    }
+
+    .nav-sidebar {
+        margin-right: -21px;
+        margin-bottom: 20px;
+        margin-left: -20px;
+    }
+
+    .nav-sidebar>li>a {
+        padding-right: 20px;
+        padding-left: 20px;
+    }
+
+    .nav-sidebar>.active>a,
+    .nav-sidebar>.active>a:hover,
+    .nav-sidebar>.active>a:focus {
+        color: #fff;
+        background-color: #428bca;
+    }
+    .main {
+        padding: 20px;
+        margin-top: 50px;
+    }
+
+    @media (min-width: 768px) {
+        .main {
+            padding-right: 40px;
+            padding-left: 40px;
+        }
+    }
+
+    .main .page-header {
+        margin-top: 0;
+    }
+    .placeholders {
+        margin-bottom: 30px;
+        text-align: center;
+        border-bottom: 1px solid rgb(153, 150, 150);
+    }
+
+    .placeholders h4 {
+        margin-bottom: 0;
+    }
+
+    .placeholder {
+        margin-bottom: 20px;
+    }
+
+    .placeholder img {
+        display: inline-block;
+        border-radius: 50%;
+    }
+</style>
+{{ /block }}
+{{ block "container" }}
+<div class="container">
+<script>
+function tran_time(dt) {
+    dt = new Date(dt)
+    var y = dt.getFullYear() || dt.getYear(),
+        m = dt.getMonth() + 1,
+        d = dt.getDate(),
+        h = dt.getHours() < 10 ? "0" + dt.getHours() : dt.getHours(),
+        i = dt.getMinutes() < 10 ? "0" + dt.getMinutes() : dt.getMinutes(),
+        s = dt.getSeconds() < 10 ? "0" + dt.getSeconds() : dt.getSeconds();
+    return y + '-' + m + '-' + d + ' ' + h + ':' + i + ':' + s;
+}
+</script>
+    <div class="row">
+        <div class="col-sm-2 col-md-3 sidebar">
+            <ul class="nav nav-sidebar">
+                <li><a href="/i" style="font-size: 22px;">个人中心</a></li>
+                <li class="active"><a href="">个人资料</a></li>
+                <li><a href="/i/updateUser">修改资料</a></li>
+                <li><a href="/i/updatEmail">换绑邮箱</a></li>
+            </ul>
+            <ul class="nav nav-sidebar">
+                <li><a href="" style="font-size: 22px;">new item</a></li>
+                <li><a href="">Nav item again</a></li>
+                <li><a href="">One more nav</a></li>
+                <li><a href="">Another nav item</a></li>
+                <li><a href="">More navigation</a></li>
+            </ul>
+        </div>
+        <div class="col-sm-8 col-md-9 main">
+            <h1 class="page-header">基本资料</h1>
+            <div class="row placeholders">
+                <div class="col-xs-6 col-sm-3 placeholder">
+                    <img src="{{ (userinfo.avator)[0] }}"
+                        width="100" height="100" class="img-responsive" alt="Generic placeholder thumbnail">
+                    <h5><a href="javascript:;">历史头像</a></h5>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-8 col-md-9">
+            <div class="row" style="margin-bottom: 25px;">
+                <div class="col-md-12">
+                    <div class="col-md-3"><h3 style="text-align: right;">昵称：</h3></div>
+                    <div class="col-md-8"><h3>{{ userinfo.nickname }}</h3></div>
+                </div>
+                <div class="col-md-12">
+                    <div class="col-md-3"><h3 style="text-align: right;">真实姓名：</h3></div>
+                    <div class="col-md-8"><h3>{{ userinfo.name }}</h3></div>
+                </div>
+                <div class="col-md-12">
+                    <div class="col-md-3"><h3 style="text-align: right;">邮箱：</h3></div>
+                    <div class="col-md-8"><h3>{{ userinfo.email }}</h3></div>
+                </div>
+                <div class="col-md-12">
+                    <div class="col-md-3"><h3 style="text-align: right;">性别：</h3></div>
+                    <div class="col-md-8"><h3>
+                        <script>
+                        if ({{ userinfo.gender }} == -1) {
+                            document.write("保密")
+                        }else if ({{ userinfo.gender }} == 1) {
+                            document.write("女")
+                        }else{
+                            document.write("男")
+                        }
+                    </script>
+                    </h3></div>
+                </div>
+                <div class="col-md-12">
+                    <div class="col-md-3"><h3 style="text-align: right;">生日：</h3></div>
+                    <div class="col-md-8"><h3>{{ userinfo.birthday }}</h3></div>
+                </div>
+                <div class="col-md-12">
+                    <div class="col-md-3"><h3 style="text-align: right;">学历：</h3></div>
+                    <div class="col-md-8"><h3>{{ userinfo.education }}</h3></div>
+                </div>
+                <div class="col-md-12">
+                    <div class="col-md-3"><h3 style="text-align: right;">学校：</h3></div>
+                    <div class="col-md-8"><h3>{{ userinfo.graschool }}</h3></div>
+                </div>
+                <div class="col-md-12">
+                    <div class="col-md-3"><h3 style="text-align: right;">修改时间：</h3></div>
+                    <div class="col-md-8"><h3><script>
+                        document.write(tran_time({{ userinfo.update_time }}))
+                    </script></h3></div>
+                </div>
+                <div class="col-md-12">
+                    <div class="col-md-3"><h3 style="text-align: right;">个人简介：</h3></div>
+                    <div class="col-md-9"><h3>{{ userinfo.bio }}</h3></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{{ /block }}
